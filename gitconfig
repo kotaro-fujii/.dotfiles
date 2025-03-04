@@ -1,0 +1,19 @@
+[user]
+    email = fujii.kotaro.l7@elms.hokudai.ac.jp
+    name = kfujii
+[init]
+    defaultBranch = main
+[alias]
+    pl = pull
+    ps = push
+    st = status
+    cm = commit
+    ck = checkout
+    sw = switch
+    df = diff
+    ca = commit -a
+    ad = add
+    ada = add .
+    br = branch
+[color]
+    ui = auto
