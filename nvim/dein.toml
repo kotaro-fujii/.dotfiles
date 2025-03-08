@@ -3,3 +3,6 @@ repo = 'mechatroner/rainbow_csv'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
