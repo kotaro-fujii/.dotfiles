@@ -18,13 +18,14 @@ nnoremap <leader>d :bdelete<CR>
 nnoremap <leader>e :e 
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>b :b 
+" nnoremap <leader>b :b 
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
 "" remaps to operate buffer with fzf plugin
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
+nnoremap <leader>b :Buffers<CR>
 
 
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
