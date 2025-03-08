@@ -10,7 +10,6 @@ fi
 if [[ ! -e $dotfiles_prefix/zsh/local.sh ]]; then
     touch $dotfiles_prefix/zsh/local.sh
 fi
-
 # .config/nvim setting
 if [ ! -d $HOME/.config ]; then
     mkdir $HOME/.config
@@ -18,7 +17,15 @@ fi
 if [[ $(readlink $HOME/.config/nvim) != $dotfiles_prefix/nvim ]]; then
     ln -sf $dotfiles_prefix/nvim $HOME/.config/nvim
 fi
-
 # other settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
+
+if [[ ! -d $dotfiles_prefix/fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git $dotfiles_prefix/fzf
+    $dotfiles_prefix/fzf/install --all
+fi
+if [[ $(readlink $HOME/.fzf) != $dotfiles_prefix/fzf ]]; then
+    rm -rf $HOME/.fzf
+    ln -sf $dotfiles_prefix/fzf $HOME/.fzf
+fi
