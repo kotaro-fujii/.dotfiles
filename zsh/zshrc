@@ -3,6 +3,33 @@ ZSH_THEME="fkota_mgutz"
 ZSH_CUSTOM=$HOME/.zsh
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-. $ZSH_CUSTOM/fkota_zshrc
 
+# initialize applications
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# aliases
+## aliases of basic commands
+alias c='cd'
+alias b='cd ../'
+alias l.='ls -d .*'
+alias ll='ls -Al'
+alias la='ls -A'
+alias lr='ls -R'
+alias wl='wc -l'
+alias zz='source ~/.zshrc'
+## aliases to execute application
+alias e='explorer.exe'
+alias py='python'
+alias lltx='lualatex'
+alias nv='nvim'
+alias tm='tmux'
+alias em='emacs -nw'
+
+# environment varyables
+export PATH=$HOME/.bin:$PATH
+export WORDCHARS='*?_-.~!#$%^'
+
+# apply local setting
+if [ -e $ZSH_CUSTOM/local.sh ]; then
+    source $ZSH_CUSTOM/local.sh
+fi
