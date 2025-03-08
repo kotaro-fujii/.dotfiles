@@ -23,6 +23,10 @@ fi
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
 
+# initialize applications
+if [[ ! -d $HOME/.cargo ]]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
 if [[ ! -d $dotfiles_prefix/fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $dotfiles_prefix/fzf
     $dotfiles_prefix/fzf/install --all
