@@ -24,9 +24,22 @@ ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
 
 # initialize applications
+[ ! -d $HOME/.bin ] && mkdir $HOME/.bin
+## cargo
 if [[ ! -d $HOME/.cargo ]]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
+## bat
+if [[ ! -d $dotfiles_prefix/bat ]]; then
+    bat_tar_gz=$dotfiles_prefix/bat-v0.25.0-x86_64-unknown-linux-gnu.tar.gz
+    wget https://github.com/sharkdp/bat/releases/download/v0.25.0/bat-v0.25.0-x86_64-unknown-linux-gnu.tar.gz \
+        -O $bat_tar_gz
+    tar -zxvf $bat_tar_gz && \
+        rm $bat_tar_gz && \
+        mv $(dirname $bat_tar_gz)/$(basename $bat_tar_gz .tar.gz) $dotfiles_prefix/bat
+fi
+ln -sf $dotfiles_prefix/bat/bat $HOME/.bin
+## fzf
 if [[ ! -d $dotfiles_prefix/fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $dotfiles_prefix/fzf
     $dotfiles_prefix/fzf/install --all
