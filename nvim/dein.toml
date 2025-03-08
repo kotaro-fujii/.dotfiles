@@ -6,3 +6,6 @@ repo = 'junegunn/fzf.vim'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
