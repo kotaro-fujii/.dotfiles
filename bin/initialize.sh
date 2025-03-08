@@ -5,6 +5,7 @@ dotfiles_prefix=$HOME/.dotfiles
 # zsh initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
 if [[ $(readlink $HOME/.zsh) != $dotfiles_prefix/zsh ]]; then
+    rm -rf $HOME/.zsh
     ln -sf $dotfiles_prefix/zsh $HOME/.zsh
 fi
 if [[ ! -e $dotfiles_prefix/zsh/local.sh ]]; then
@@ -15,6 +16,7 @@ if [ ! -d $HOME/.config ]; then
     mkdir $HOME/.config
 fi
 if [[ $(readlink $HOME/.config/nvim) != $dotfiles_prefix/nvim ]]; then
+    rm -rf $HOME/.config/nvim
     ln -sf $dotfiles_prefix/nvim $HOME/.config/nvim
 fi
 # other settings
