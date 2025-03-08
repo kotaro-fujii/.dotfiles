@@ -1,2 +1,5 @@
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
