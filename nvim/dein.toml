@@ -9,3 +9,6 @@ repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'tpope/vim-repeat'
+
+[[plugins]]
+repo = 'simeji/winresizer'
