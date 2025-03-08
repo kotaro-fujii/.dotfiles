@@ -35,6 +35,8 @@ if dein#load_state(s:dein_dir)
 endif
 " }}}
 
+set rtp+=$HOME/.dotfiles/fzf
+
 " plugin installation check {{{
 if dein#check_install()
   call dein#install()
