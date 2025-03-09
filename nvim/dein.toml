@@ -12,3 +12,9 @@ repo = 'tpope/vim-repeat'
 
 [[plugins]]
 repo = 'simeji/winresizer'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'EdenEast/nightfox.nvim'
