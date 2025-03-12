@@ -1,20 +1,21 @@
-[[plugins]]
-repo = 'mechatroner/rainbow_csv'
-
+# file operations
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 
+# text operations
 [[plugins]]
 repo = 'tpope/vim-surround'
-
 [[plugins]]
 repo = 'tpope/vim-repeat'
 
+# representations
 [[plugins]]
 repo = 'simeji/winresizer'
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
 
+# colorschemes
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
-
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
