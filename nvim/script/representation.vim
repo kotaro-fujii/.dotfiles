@@ -27,3 +27,4 @@ hi Whitespace ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 hi SpecialKey ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 " background
 hi Normal ctermbg=None guibg=none
+hi NormalNC ctermbg=None guibg=none
