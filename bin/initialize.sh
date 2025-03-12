@@ -19,6 +19,11 @@ if [[ $(readlink $HOME/.config/nvim) != $dotfiles_prefix/nvim ]]; then
     rm -rf $HOME/.config/nvim
     ln -sf $dotfiles_prefix/nvim $HOME/.config/nvim
 fi
+# .vim setting
+if [[ $(readlink $HOME/.vim) != $dotfiles_prefix/nvim ]]; then
+    rm -rf $HOME/.vim
+    ln -sf $dotfiles_prefix/nvim $HOME/.vim
+fi
 # other settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf

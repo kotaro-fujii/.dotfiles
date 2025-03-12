@@ -58,3 +58,8 @@ execute "source " . g:script_path . "basic.vim"
 execute "source " . g:script_path . "remap.vim"
 execute "source " . g:script_path . "representation.vim"
 execute "source " . g:script_path . "func.vim"
+
+if !filereadable(expand("~/.config/nvim/local.vim"))
+    silent! execute "call system('touch ~/.config/nvim/local.vim')"
+endif
+execute "source " . g:nvim_prefix . "local.vim"
