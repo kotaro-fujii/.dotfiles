@@ -12,19 +12,26 @@ set completeopt=menu,preview
 set hlsearch
 set incsearch
 " terminal representation
-autocmd TermOpen * setlocal nonumber
-autocmd TermOpen * setlocal norelativenumber
+if has('nvim')
+  autocmd TermOpen * setlocal nonumber
+  autocmd TermOpen * setlocal norelativenumber
+endif
 " coloring
 let mysyntaxfile = "~/.vim/syntax/syntax.vim"
 syntax on
 syntax enable
 set background=dark
-" colorscheme iceberg
-colorscheme nightfox
 " listchars representations
 hi NonText ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 hi Whitespace ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 hi SpecialKey ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 " background
-hi Normal ctermbg=None guibg=none
-hi NormalNC ctermbg=None guibg=none
+if has('nvim')
+    colorscheme nightfox
+    hi Normal ctermbg=None guibg=None
+    hi NormalNC ctermbg=None guibg=None
+else
+    " colorscheme iceberg
+    hi Normal ctermbg=None
+    hi NormalNC ctermbg=None
+endif

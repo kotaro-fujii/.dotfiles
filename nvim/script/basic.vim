@@ -11,7 +11,8 @@ filetype plugin indent off
 
 set mouse=
 
-autocmd TermOpen * startinsert
-" autocmd BufEnter * if &buftype == 'terminal' | startinsert | endif
+if has('nvim')
+  autocmd TermOpen * startinsert
+endif
 
 set hidden
