@@ -21,6 +21,9 @@ syntax enable
 set background=dark
 " colorscheme iceberg
 colorscheme nightfox
+" listchars representations
 hi NonText ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 hi Whitespace ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 hi SpecialKey ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
+" background
+hi Normal ctermbg=None guibg=none
