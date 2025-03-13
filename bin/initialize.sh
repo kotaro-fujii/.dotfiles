@@ -27,11 +27,11 @@ fi
 # alacritty setting
 ssh -T git@github.com
 if [[ $? = 1 ]]; then
-    git clone git@github.com:kotaro-fujii/alacritty_setting.git $dotfiles_prefix/alacritty
+    git clone git@github.com:kotaro-fujii/alacritty_setting.git $dotfiles_prefix/alacritty_config
 fi
 if [[ $(readlink $HOME/.config/alacritty) != $dotfiles_prefix/alacritty ]]; then
     rm -rf $HOME/.config/alacritty
-    ln -sf $dotfiles_prefix/alacritty $HOME/.config/alacritty
+    ln -sf $dotfiles_prefix/alacritty_config $HOME/.config/alacritty
 fi
 # other settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
@@ -62,3 +62,11 @@ if [[ $(readlink $HOME/.fzf) != $dotfiles_prefix/fzf ]]; then
     rm -rf $HOME/.fzf
     ln -sf $dotfiles_prefix/fzf $HOME/.fzf
 fi
+## alacritty
+#if [[ ! -d $dotfiles_prefix/alacritty ]]; then
+#    git clone https://github.com/alacritty/alacritty.git $dotfiles_prefix/alacritty
+#    (
+#        cd $dotfiles_prefix/alacritty;
+#        cargo build --release;
+#    )
+#fi
