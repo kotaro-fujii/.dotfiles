@@ -24,6 +24,15 @@ if [[ $(readlink $HOME/.vim) != $dotfiles_prefix/nvim ]]; then
     rm -rf $HOME/.vim
     ln -sf $dotfiles_prefix/nvim $HOME/.vim
 fi
+# alacritty setting
+ssh -T git@github.com
+if [[ $? = 1 ]]; then
+    git clone git@github.com:kotaro-fujii/alacritty_setting.git $dotfiles_prefix/alacritty
+fi
+if [[ $(readlink $HOME/.config/alacritty) != $dotfiles_prefix/alacritty ]]; then
+    rm -rf $HOME/.config/alacritty
+    ln -sf $dotfiles_prefix/alacritty $HOME/.config/alacritty
+fi
 # other settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
