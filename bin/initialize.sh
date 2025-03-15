@@ -11,6 +11,8 @@ fi
 if [[ ! -e $dotfiles_prefix/zsh/local.sh ]]; then
     touch $dotfiles_prefix/zsh/local.sh
 fi
+# bash initialize
+ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
 # .config/nvim setting
 if [ ! -d $HOME/.config ]; then
     mkdir $HOME/.config
