@@ -5,7 +5,7 @@ set cursorline
 set guicursor=n-v-c-i:block
 set number
 set showcmd
-set listchars=tab:>-,trail:_
+set listchars=tab:>-,trail:-
 set list
 set completeopt=menu,preview
 " search representation
@@ -21,10 +21,6 @@ let mysyntaxfile = "~/.vim/syntax/syntax.vim"
 syntax on
 syntax enable
 set background=dark
-" listchars representations
-hi NonText ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
-hi Whitespace ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
-hi SpecialKey ctermfg=red ctermbg=NONE guifg=#ffffff guibg=#000000
 " background
 if has('nvim')
     colorscheme nightfox
@@ -35,3 +31,7 @@ else
     hi Normal ctermbg=None
     hi NormalNC ctermbg=None
 endif
+" listchars representations
+hi NonText ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
+hi Whitespace ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
+hi SpecialKey ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
