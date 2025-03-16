@@ -5,6 +5,9 @@ inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap ' ''<LEFT>
 inoremap " ""<LEFT>
+inoremap '' '
+inoremap "" "
+inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
 " bracket format
 inoremap <silent> <expr> <BS> BracketBackspace()
@@ -33,11 +36,6 @@ nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 tnoremap <silent> <ESC> <c-\><c-n>
 
 autocmd FileType lisp call LispRemap()
-autocmd FileType vim call VimRemap()
-
-function! VimRemap()
-    inoremap <buffer> "" ""<LEFT>
-endfunction
 
 function! LispRemap()
     iunmap '
