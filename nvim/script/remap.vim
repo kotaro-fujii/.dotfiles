@@ -20,6 +20,10 @@ vnoremap <silent> vv <ESC>
 cnoremap <silent> kj <C-u><ESC>
 cnoremap <silent> jk <C-u><ESC>
 
+" motion remaps
+noremap L $
+noremap H ^
+
 " buffer and window operations
 let mapleader = "\<Space>"
 nnoremap <leader>h :split<CR>
