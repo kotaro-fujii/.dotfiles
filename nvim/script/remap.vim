@@ -41,6 +41,8 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
+"" remaps to handle org
+nnoremap <silent> <expr> <leader>o OrgHandler()
 
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 

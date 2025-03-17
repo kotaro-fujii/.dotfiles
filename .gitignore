@@ -1,6 +1,7 @@
 /zsh/local.sh
 /nvim/dein
 /nvim/local.vim
+/nvim/org.d
 /fzf
 /bat
 /alacritty

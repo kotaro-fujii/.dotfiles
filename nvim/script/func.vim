@@ -71,3 +71,14 @@ function! BracketBackspace()
     endif
 endfunction
 
+function! OrgHandler()
+    let target_directory = expand("~/.config/nvim/org.d")
+    let target_file = target_directory . "/" . "org.md"
+    if !isdirectory(target_directory)
+        call mkdir(target_directory, "p")
+    endif
+    if !filereadable(expand(target_file))
+        call system('touch ' . shellescape(target_file))
+    endif
+    call timer_start(10, { -> execute('edit ' . fnameescape(target_file))})
+endfunction
