@@ -19,6 +19,8 @@ inoremap <silent> jk <ESC>
 vnoremap <silent> vv <ESC>
 cnoremap <silent> kj <C-u><ESC>
 cnoremap <silent> jk <C-u><ESC>
+tnoremap <silent> kj <c-\><c-n>
+tnoremap <silent> jk <c-\><c-n>
 
 " motion remaps
 noremap L $
