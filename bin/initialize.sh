@@ -2,30 +2,26 @@
 
 dotfiles_prefix=$HOME/.dotfiles
 
+function dir_link {
+    # arg1: directory to link
+    # arg2: link destination
+    if [[ $(readlink $2) != $1 ]]; then
+        rm -rf $2
+        ln -sf $1 $2
+    fi
+}
+
 # zsh initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
-if [[ $(readlink $HOME/.zsh) != $dotfiles_prefix/zsh ]]; then
-    rm -rf $HOME/.zsh
-    ln -sf $dotfiles_prefix/zsh $HOME/.zsh
-fi
-if [[ ! -e $dotfiles_prefix/zsh/local.sh ]]; then
-    touch $dotfiles_prefix/zsh/local.sh
-fi
+dir_link $dotfiles_prefix/zsh $HOME/.zsh
+[ ! -e $dotfiles_prefix/zsh/local.sh ] && touch $dotfiles_prefix/zsh/local.sh
 # bash initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
 # .config/nvim setting
-if [ ! -d $HOME/.config ]; then
-    mkdir $HOME/.config
-fi
-if [[ $(readlink $HOME/.config/nvim) != $dotfiles_prefix/nvim ]]; then
-    rm -rf $HOME/.config/nvim
-    ln -sf $dotfiles_prefix/nvim $HOME/.config/nvim
-fi
+[ ! -d $HOME/.config ] && mkdir $HOME/.config
+dir_link $dotfiles_prefix/nvim $HOME/.config/nvim
 # .vim setting
-if [[ $(readlink $HOME/.vim) != $dotfiles_prefix/nvim ]]; then
-    rm -rf $HOME/.vim
-    ln -sf $dotfiles_prefix/nvim $HOME/.vim
-fi
+dir_link $dotfiles_prefix/nvim $HOME/.vim
 # alacritty setting
 ssh -T git@github.com
 if [[ $? = 1 ]]; then
@@ -35,6 +31,8 @@ if [[ $(readlink $HOME/.config/alacritty) != $dotfiles_prefix/alacritty ]]; then
     rm -rf $HOME/.config/alacritty
     ln -sf $dotfiles_prefix/alacritty_config $HOME/.config/alacritty
 fi
+# emacs setting
+dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
 # other settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
@@ -60,10 +58,7 @@ if [[ ! -d $dotfiles_prefix/fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $dotfiles_prefix/fzf
     $dotfiles_prefix/fzf/install --all
 fi
-if [[ $(readlink $HOME/.fzf) != $dotfiles_prefix/fzf ]]; then
-    rm -rf $HOME/.fzf
-    ln -sf $dotfiles_prefix/fzf $HOME/.fzf
-fi
+dir_link $dotfiles_prefix/fzf $HOME/.fzf
 ## alacritty
 #if [[ ! -d $dotfiles_prefix/alacritty ]]; then
 #    git clone https://github.com/alacritty/alacritty.git $dotfiles_prefix/alacritty
