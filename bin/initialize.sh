@@ -33,6 +33,8 @@ if [[ $(readlink $HOME/.config/alacritty) != $dotfiles_prefix/alacritty ]]; then
 fi
 # emacs setting
 dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
+# org setting
+[ ! -d $dotfiles_prefix/org.d ] && git clone git@github.com:kotaro-fujii/org.d.git $dotfiles_prefix/org.d
 # other settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
