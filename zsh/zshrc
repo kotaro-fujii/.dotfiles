@@ -36,11 +36,9 @@ alias nv='nvim'
 alias tm='tmux'
 alias em='emacs -nw'
 function org {
-    if [[  ! -d ~/.config/nvim/org.d ]]; then
-        mkdir ~/.config/nvim/org.d
-    fi
     nv ~/.config/nvim/org.d/org.md
 }
+alias org='nv ~/.dotfiles/org.d/org.md'
 
 # environment varyables
 export PATH=$HOME/.bin:$PATH
