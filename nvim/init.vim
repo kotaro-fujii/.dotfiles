@@ -112,15 +112,16 @@ let org_directory = expand("~/.dotfiles/org.d")
 " open org.md
 function! OrgOpen()
     let org_file = g:org_directory . "/" . "org.md"
-    call timer_start(10, { -> execute('edit ' . fnameescape(target_file))})
+    call timer_start(10, { -> execute('edit ' . fnameescape(org_file))})
 endfunction
 " pull org repository
 function! OrgPush()
-    " silent! execute "call system('touch ~/.config/nvim/local.vim')"
-    call system("git -C " . g:org_directory . " push &")
+    let current_datetime = strftime("%Y/%m/%d/%H:%M")
+    call system("git -C " . g:org_directory . " add .")
+    call system("git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgPush\'")
+    call system("git -C " . g:org_directory . " push")
 endfunction
 function! OrgPull()
-    " silent! execute "call system('touch ~/.config/nvim/local.vim')"
     call system("git -C " . g:org_directory . " pull &")
 endfunction
 
@@ -184,10 +185,10 @@ nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 "" remaps to handle org
-nnoremap <silent> <expr> <leader>o OrgOpen()
-nnoremap <silent> <expr> <leader>oo OrgOpen()
-nnoremap <silent> <expr> <leader>oo OrgPush()
-nnoremap <silent> <expr> <leader>oo OrgPull()
+nnoremap <expr> <leader>o OrgOpen()
+nnoremap <expr> <leader>oo OrgOpen()
+nnoremap <expr> <leader>os OrgPush()
+nnoremap <expr> <leader>op OrgPull()
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 
@@ -233,23 +234,3 @@ if !filereadable(expand("~/.config/nvim/local.vim"))
     silent! execute "call system('touch ~/.config/nvim/local.vim')"
 endif
 execute "source " . g:nvim_prefix . "local.vim"
-
-
-
-
-
-
-
-
-"let g:nvim_prefix = "~/.config/nvim/"
-"
-"let g:script_path = g:nvim_prefix . "script/"
-"execute "source " . g:script_path . "basic.vim"
-"execute "source " . g:script_path . "remap.vim"
-"execute "source " . g:script_path . "representation.vim"
-"execute "source " . g:script_path . "func.vim"
-"
-"if !filereadable(expand("~/.config/nvim/local.vim"))
-"    silent! execute "call system('touch ~/.config/nvim/local.vim')"
-"endif
-"execute "source " . g:nvim_prefix . "local.vim"
