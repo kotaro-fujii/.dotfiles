@@ -117,12 +117,12 @@ endfunction
 " pull org repository
 function! OrgPush()
     let current_datetime = strftime("%Y/%m/%d/%H:%M")
-    call system("git -C " . g:org_directory . " add .")
-    call system("git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgPush\'")
-    call system("git -C " . g:org_directory . " push")
+    execute "!git -C " . g:org_directory . " add ."
+    execute "!git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgPush\'"
+    execute "!git -C " . g:org_directory . " push"
 endfunction
 function! OrgPull()
-    call system("git -C " . g:org_directory . " pull &")
+    execute "!git -C " . g:org_directory . " pull"
 endfunction
 
 
