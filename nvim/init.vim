@@ -177,6 +177,7 @@ nnoremap <leader>d :bdelete<CR>
 nnoremap <leader>e :e 
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 "nnoremap <leader>b :b 
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
