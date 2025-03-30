@@ -204,6 +204,10 @@ set list
 set completeopt=menu,preview
 set hlsearch
 set incsearch
+"" folding
+autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
+set viewoptions-=options
 "" terminal representation
 if has('nvim')
   autocmd TermOpen * setlocal nonumber
