@@ -26,6 +26,7 @@ alias ll='ls -Al'
 alias la='ls -A'
 alias lr='ls -R'
 alias wl='wc -l'
+alias rdln='readlink'
 alias zz='source ~/.zshrc'
 ## aliases to execute application
 alias e='explorer.exe'
