@@ -214,6 +214,21 @@ if has('nvim')
   autocmd TermOpen * setlocal norelativenumber
 endif
 "" coloring
+" overwrite coloring
+function OverWriteColor()
+    if has('nvim')
+        hi Normal ctermbg=None guibg=None
+        hi NormalNC ctermbg=None guibg=None
+    else
+        hi Normal ctermbg=None
+        hi NormalNC ctermbg=None
+    endif
+    hi NonText ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
+    hi Whitespace ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
+    hi SpecialKey ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
+endfunction
+autocmd ColorScheme * call OverWriteColor()
+" load color scheme
 let mysyntaxfile = "~/.vim/syntax/syntax.vim"
 syntax on
 syntax enable
@@ -223,17 +238,6 @@ if has('nvim')
 else
     colorscheme iceberg
 endif
-"" overwrite coloring
-if has('nvim')
-    hi Normal ctermbg=None guibg=None
-    hi NormalNC ctermbg=None guibg=None
-else
-    hi Normal ctermbg=None
-    hi NormalNC ctermbg=None
-endif
-hi NonText ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
-hi Whitespace ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
-hi SpecialKey ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
 
 let g:nvim_prefix = "~/.config/nvim/"
 if !filereadable(expand("~/.config/nvim/local.vim"))
