@@ -23,7 +23,7 @@ dir_link $dotfiles_prefix/nvim $HOME/.config/nvim
 # .vim setting
 dir_link $dotfiles_prefix/nvim $HOME/.vim
 # alacritty setting
-ssh -T git@github.com
+ssh -T git@github.com 2> /dev/null
 if [[ $? = 1 ]]; then
     git clone git@github.com:kotaro-fujii/alacritty_setting.git $dotfiles_prefix/alacritty_config
 fi
