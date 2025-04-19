@@ -155,8 +155,6 @@ inoremap '' '
 inoremap "" "
 inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
-inoremap <silent> <expr> <BS> BracketBackspace()
-inoremap <silent> <expr> <CR> IndentBraces()
 "" remaps to escape
 inoremap <silent> kj <ESC>
 inoremap <silent> jk <ESC>
@@ -193,6 +191,16 @@ nnoremap <expr> <leader>os OrgPush()
 nnoremap <expr> <leader>op OrgPull()
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+"" remaps depending on buffer type
+function LispRemap()
+    setlocal lisp
+endfunction
+function NoLispRemap()
+    inoremap <buffer> <silent> <expr> <BS> BracketBackspace()
+    inoremap <buffer> <silent> <expr> <CR> IndentBraces()
+endfunction
+autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
+autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call NoLispRemap()
 
 " representations
 set cursorline
