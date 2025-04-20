@@ -1,0 +1,63 @@
+# [colors.primary]
+# background = "#161821"
+# foreground = "#c6c8d1"
+# 
+# [colors.cursor]
+# text = "#161821"
+# cursor = "#c6c8d1"
+# 
+# [colors.vi_mode_cursor]
+# text = "#161821"
+# cursor = "#c6c8d1"
+# 
+# [colors.search.matches]
+# foreground = "#392313"
+# background = "#e4aa80"
+# 
+# 
+# [colors.footer_bar]
+# foreground = "#161821"
+# background = "#c6c8d1"
+# 
+# 
+# [colors.normal]
+# black =   "#1e2132"
+# red =     "#e27878"
+# green =   "#b4be82"
+# yellow =  "#e2a478"
+# blue =    "#84a0c6"
+# magenta = "#a093c7"
+# cyan =    "#89b8c2"
+# white =   "#c6c8d1"
+# 
+# [colors]
+# indexed_colors = [
+#     { index = 23, color = "#384851" },
+#     { index = 29, color = "#45493e" },
+#     { index = 30, color = "#5b7881" },
+#     { index = 95, color = "#53343b" },
+#     { index = 109, color = "#89b8c2" },
+#     { index = 110, color = "#84a0c6" },
+#     { index = 140, color = "#a093c7" },
+#     { index = 150, color = "#b4be82" },
+#     { index = 158, color = "#c0c5b9" },
+#     { index = 159, color = "#b3c3cc" },
+#     { index = 195, color = "#c6c8d1" },
+#     { index = 203, color = "#e27878" },
+#     { index = 216, color = "#e2a478" },
+#     { index = 224, color = "#ceb0b6" },
+#     { index = 233, color = "#0f1117" },
+#     { index = 234, color = "#161821" },
+#     { index = 235, color = "#1e2132" },
+#     { index = 236, color = "#3d425b" },
+#     { index = 237, color = "#3e445e" },
+#     { index = 238, color = "#3e445e" },
+#     { index = 239, color = "#444b71" },
+#     { index = 240, color = "#515e97" },
+#     { index = 242, color = "#6b7089" },
+#     { index = 245, color = "#818596" },
+#     { index = 251, color = "#c6c8d1" },
+#     { index = 252, color = "#a3adcb" },
+#     { index = 253, color = "#cdd1e6" },
+#     { index = 255, color = "#d4d5db" },
+# ]

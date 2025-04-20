@@ -10,6 +10,8 @@ function dir_link {
         ln -sf $1 $2
     fi
 }
+windows_homedir=$(powershell.exe '$env:USERPROFILE' | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/1' | tr -d '\r')
+windows_appdata=$windows_homedir/AppData/Roaming
 
 # zsh initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
@@ -22,20 +24,17 @@ ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
 dir_link $dotfiles_prefix/nvim $HOME/.config/nvim
 # .vim setting
 dir_link $dotfiles_prefix/nvim $HOME/.vim
-# alacritty setting
-ssh -T git@github.com 2> /dev/null
-if [[ $? = 1 ]]; then
-    git clone git@github.com:kotaro-fujii/alacritty_setting.git $dotfiles_prefix/alacritty_config
-fi
-if [[ $(readlink $HOME/.config/alacritty) != $dotfiles_prefix/alacritty ]]; then
-    rm -rf $HOME/.config/alacritty
-    ln -sf $dotfiles_prefix/alacritty_config $HOME/.config/alacritty
-fi
 # emacs setting
 dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
+# alacritty setting
+windows_alacritty=$windows_appdata/alacritty
+[ ! -d $windows_alacritty ] && mkdir $windows_alacritty
+cp -r $dotfiles_prefix/alacritty/* $windows_alacritty
+[ ! -f $windows_alacritty/local.toml ] && touch $windows_alacritty/local.toml
+if [ ! -d $windows_alacritty/themes ]; then
+    ssh -T git@github.com && git clone https://github.com/alacritty/alacritty-theme $windows_alacritty/themes
+fi
 # wezterm setting in windows
-windows_homedir=$(powershell.exe '$env:USERPROFILE' | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/1' | tr -d '\r')
-cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
 wezterm_local=$windows_homedir/.wezterm_local.lua
 [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm_local.lua $wezterm_local
 # org setting
@@ -66,11 +65,3 @@ if [[ ! -d $dotfiles_prefix/fzf ]]; then
     $dotfiles_prefix/fzf/install --all
 fi
 dir_link $dotfiles_prefix/fzf $HOME/.fzf
-## alacritty
-#if [[ ! -d $dotfiles_prefix/alacritty ]]; then
-#    git clone https://github.com/alacritty/alacritty.git $dotfiles_prefix/alacritty
-#    (
-#        cd $dotfiles_prefix/alacritty;
-#        cargo build --release;
-#    )
-#fi

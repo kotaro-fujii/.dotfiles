@@ -22,3 +22,13 @@ config.background = {
 }
 return config
 ```
+## alacritty
+```local.toml
+[window]
+opacity = 0.7
+
+[general]
+import = [
+    "~/AppData/Roaming/alacritty/themes/themes/nightfox.toml"
+]
+```

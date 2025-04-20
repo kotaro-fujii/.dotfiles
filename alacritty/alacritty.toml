@@ -1,0 +1,26 @@
+[general]
+import = [
+    "~/AppData/Roaming/alacritty/local.toml",
+]
+
+[terminal.shell]
+program = "wsl"
+args = ["~"]
+
+[window]
+dimensions = {columns = 100, lines = 50}
+
+[font]
+normal = { family = "Hackgen Console", style = "Regular" }
+bold = { style = "Bold" }
+size = 12.75
+
+[mouse]
+bindings = [
+    { mouse = "Right", action = "Paste" },
+]
+
+[keyboard]
+bindings = [
+    { key = "o", mods = "Alt", action = "ToggleViMode" },
+]
