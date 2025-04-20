@@ -33,6 +33,9 @@ if [[ $(readlink $HOME/.config/alacritty) != $dotfiles_prefix/alacritty ]]; then
 fi
 # emacs setting
 dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
+# wezterm setting in windows
+windows_homedir=$(powershell.exe '$env:USERPROFILE' | sed 's/\\/\//g' | sed 's/C:/\/mnt\/c/1' | tr -d '\r')
+cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
 # org setting
 [ ! -d $dotfiles_prefix/org.d ] && git clone git@github.com:kotaro-fujii/org.d.git $dotfiles_prefix/org.d
 # other settings
