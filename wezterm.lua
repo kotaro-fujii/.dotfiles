@@ -7,8 +7,8 @@ config.default_prog = { "wsl", "~" }
 
 -- representations
 config.font = wezterm.font("HackGen Console")
-config.color_scheme = 'iceberg-dark'
 config.font_size = 12.75
+config.color_scheme = 'nightfox'
 config.audible_bell = "Disabled"
 
 -- load local settings

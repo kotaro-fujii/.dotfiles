@@ -35,6 +35,7 @@ if [ ! -d $windows_alacritty/themes ]; then
     ssh -T git@github.com && git clone https://github.com/alacritty/alacritty-theme $windows_alacritty/themes
 fi
 # wezterm setting in windows
+cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
 wezterm_local=$windows_homedir/.wezterm_local.lua
 [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm_local.lua $wezterm_local
 # org setting
