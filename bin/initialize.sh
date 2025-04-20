@@ -27,17 +27,21 @@ dir_link $dotfiles_prefix/nvim $HOME/.vim
 # emacs setting
 dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
 # alacritty setting
-windows_alacritty=$windows_appdata/alacritty
-[ ! -d $windows_alacritty ] && mkdir $windows_alacritty
-cp -r $dotfiles_prefix/alacritty/* $windows_alacritty
-[ ! -f $windows_alacritty/local.toml ] && touch $windows_alacritty/local.toml
-if [ ! -d $windows_alacritty/themes ]; then
-    ssh -T git@github.com && git clone https://github.com/alacritty/alacritty-theme $windows_alacritty/themes
+if [ -f /etc/wsl.conf ]; then
+    windows_alacritty=$windows_appdata/alacritty
+    [ ! -d $windows_alacritty ] && mkdir $windows_alacritty
+    cp -r $dotfiles_prefix/alacritty/* $windows_alacritty
+    [ ! -f $windows_alacritty/local.toml ] && touch $windows_alacritty/local.toml
+    if [ ! -d $windows_alacritty/themes ]; then
+        ssh -T git@github.com && git clone https://github.com/alacritty/alacritty-theme $windows_alacritty/themes
+    fi
 fi
 # wezterm setting in windows
-cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
-wezterm_local=$windows_homedir/.wezterm_local.lua
-[ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm_local.lua $wezterm_local
+if [ -f /etc/wsl.conf ]; then
+    cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
+    wezterm_local=$windows_homedir/.wezterm_local.lua
+    [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm_local.lua $wezterm_local
+fi
 # org setting
 [ ! -d $dotfiles_prefix/org.d ] && git clone git@github.com:kotaro-fujii/org.d.git $dotfiles_prefix/org.d
 # other settings
