@@ -10,6 +10,7 @@ config.font = wezterm.font("HackGen Console")
 config.font_size = 12.75
 config.color_scheme = 'nightfox'
 config.audible_bell = "Disabled"
+config.hide_tab_bar_if_only_one_tab = true
 
 -- load local settings
 local home_path = os.getenv("USERPROFILE")
