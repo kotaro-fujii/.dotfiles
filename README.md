@@ -4,7 +4,6 @@ to-do list
 - clipboard
 - markdown入力補助
 - implement to change color in insert mode
-- change color of nontext
 ## wezterm
 local setting
 ```.wezterm_local.lua

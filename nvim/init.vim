@@ -224,6 +224,11 @@ endif
 "" coloring
 " overwrite coloring
 function OverWriteColor()
+    let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
+    let l:listchars_guibg = synIDattr(synIDtrans(hlID('Title')),      'fg', 'gui')
+    execute 'hi NonText    guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
+    execute 'hi Whitespace guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
+    execute 'hi SpecialKey guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
     if has('nvim')
         hi Normal ctermbg=None guibg=None
         hi NormalNC ctermbg=None guibg=None
@@ -231,9 +236,6 @@ function OverWriteColor()
         hi Normal ctermbg=None
         hi NormalNC ctermbg=None
     endif
-    hi NonText ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
-    hi Whitespace ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
-    hi SpecialKey ctermfg=red ctermbg=green guifg=#ff0000 guibg=#00ff00
 endfunction
 autocmd ColorScheme * call OverWriteColor()
 " load color scheme
