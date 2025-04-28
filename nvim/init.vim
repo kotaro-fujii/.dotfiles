@@ -203,7 +203,7 @@ autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
 autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call NoLispRemap()
 
 " representations
-set cursorline
+"set cursorline
 set guicursor=n-v-c-i:block
 set number
 set showcmd
@@ -237,17 +237,14 @@ function OverWriteColor()
         hi NormalNC ctermbg=None
     endif
 endfunction
-function SaveColorschemeSetting()
-    let g:cursorline_bg = synIDattr(synIDtrans(hlID('CursorLine')), 'bg', 'gui')
-endfunction
 autocmd ColorScheme * call OverWriteColor()
-autocmd ColorScheme * call SaveColorschemeSetting()
 function ChangeColorInsertEnter()
-    execute 'hi CursorLine guibg=' . 'None'
+    set nocursorline
 endfunction
 function ChangeColorInsertLeave()
-    execute 'hi CursorLine guibg=' . g:cursorline_bg
+    set cursorline
 endfunction
+set cursorline
 autocmd InsertEnter * call ChangeColorInsertEnter()
 autocmd InsertLeave * call ChangeColorInsertLeave()
 " load color scheme
