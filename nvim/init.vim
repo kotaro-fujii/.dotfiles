@@ -237,7 +237,19 @@ function OverWriteColor()
         hi NormalNC ctermbg=None
     endif
 endfunction
+function SaveColorschemeSetting()
+    let g:cursorline_bg = synIDattr(synIDtrans(hlID('CursorLine')), 'bg', 'gui')
+endfunction
 autocmd ColorScheme * call OverWriteColor()
+autocmd ColorScheme * call SaveColorschemeSetting()
+function ChangeColorInsertEnter()
+    execute 'hi CursorLine guibg=' . 'None'
+endfunction
+function ChangeColorInsertLeave()
+    execute 'hi CursorLine guibg=' . g:cursorline_bg
+endfunction
+autocmd InsertEnter * call ChangeColorInsertEnter()
+autocmd InsertLeave * call ChangeColorInsertLeave()
 " load color scheme
 let mysyntaxfile = "~/.vim/syntax/syntax.vim"
 syntax on
