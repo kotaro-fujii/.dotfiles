@@ -115,13 +115,13 @@ function! OrgOpen()
     call timer_start(10, { -> execute('edit ' . fnameescape(org_file))})
 endfunction
 " pull org repository
-function! OrgPush()
+function! OrgSave()
     let current_datetime = strftime("%Y/%m/%d/%H:%M")
     execute "!git -C " . g:org_directory . " add ."
-    execute "!git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgPush\'"
+    execute "!git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgSave\'"
     execute "!git -C " . g:org_directory . " push"
 endfunction
-function! OrgPull()
+function! OrgLoad()
     execute "!git -C " . g:org_directory . " pull"
 endfunction
 
@@ -138,7 +138,7 @@ set hidden
 set shell=zsh
 set wildmode=list,full
 set mouse=
-set timeoutlen=300
+set timeoutlen=500
 set clipboard+=unnamedplus
 "" terminal settings
 "if has('nvim')
@@ -177,8 +177,8 @@ nnoremap <leader>d :bdelete<CR>
 nnoremap <leader>e :e 
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
-"nnoremap <leader>b :b 
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
 nnoremap <leader>f :Files<CR>
@@ -186,12 +186,12 @@ nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 "" remaps to handle org
-nnoremap <expr> <leader>o OrgOpen()
 nnoremap <expr> <leader>oo OrgOpen()
-nnoremap <expr> <leader>os OrgPush()
-nnoremap <expr> <leader>op OrgPull()
+nnoremap <expr> <leader>os OrgSave()
+nnoremap <expr> <leader>ol OrgLoad()
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+nnoremap U <C-r>
 "" remaps depending on buffer type
 function LispRemap()
     setlocal lisp
