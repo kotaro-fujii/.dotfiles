@@ -139,6 +139,7 @@ set shell=zsh
 set wildmode=list,full
 set mouse=
 set timeoutlen=300
+set clipboard+=unnamedplus
 "" terminal settings
 "if has('nvim')
 "  autocmd TermOpen * startinsert

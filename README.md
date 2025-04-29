@@ -1,7 +1,6 @@
 # .dotfiles
 ## nvim
 to-do list
-- clipboard
 - markdown入力補助
 ## wezterm
 local setting
