@@ -48,87 +48,86 @@ let open_brackets = ["(", "{", "[", "\"", "\'"]
 let close_brackets = [")", "}", "]", "\"", "\'"]
 " judge that given two characters is pair bracket
 function! IsPair(beforeletter, nowletter)
-    if index(g:open_brackets, a:beforeletter) == -1
-        return 0
-    elseif index(g:open_brackets, a:beforeletter) == index(g:close_brackets, a:nowletter)
-        return 1
-    else
-        return 0
+  if index(g:open_brackets, a:beforeletter) == -1
+    return 0
+  elseif index(g:open_brackets, a:beforeletter) == index(g:close_brackets, a:nowletter)
+    return 1
+  else
+    return 0
 endfunction
 " find pair bracket from same line
 function! CloseBracketColumn(beforeletter)
-    let line_tail = strpart(getline('.'), col('.') - 1)
-    let close_bracket = g:close_brackets[index(g:open_brackets, a:beforeletter)]
-    let nested = 0
-    let colcount = 0
-    for c in line_tail
-        if c == a:beforeletter
-            let nested = nested + 1
-        elseif IsPair(a:beforeletter, c)
-            if nested == 0
-                return colcount
-            else
-                let nested = nested - 1
-            endif
-        endif
-        let colcount = colcount + 1
-    endfor
-    return -1
+  let line_tail = strpart(getline('.'), col('.') - 1)
+  let close_bracket = g:close_brackets[index(g:open_brackets, a:beforeletter)]
+  let nested = 0
+  let colcount = 0
+  for c in line_tail
+    if c == a:beforeletter
+      let nested = nested + 1
+    elseif IsPair(a:beforeletter, c)
+      if nested == 0
+        return colcount
+      else
+        let nested = nested - 1
+      endif
+    endif
+    let colcount = colcount + 1
+  endfor
+  return -1
 endfunction
 " format string when start new line
 function! IndentBraces()
-    let beforeletter = getline(".")[col(".") - 2]
-    let nowletter = getline(".")[col(".") - 1]
-    if beforeletter == ':'
-        return "\n\t"
-    elseif IsPair(beforeletter, nowletter) " (), focus on ')'
-        return "\n\t\n\<BS>\<UP>\<END>"
-    elseif index(g:open_brackets, beforeletter) != -1 " (hello, focus on h
-        let close_bracket_colunm = CloseBracketColumn(beforeletter)
-        if close_bracket_colunm == -1
-            return "\n\t"
-        else
-            return "\n\t" . repeat("\<RIGHT>", close_bracket_colunm) . "\n\<BS>\<UP>\<ESC>I"
-        endif
-    elseif index(g:close_brackets, nowletter) != -1 " (hello world), focus on )
-        return "\n\<ESC>O\t"
+  let beforeletter = getline(".")[col(".") - 2]
+  let nowletter = getline(".")[col(".") - 1]
+  if beforeletter == ':'
+    return "\n\t"
+  elseif IsPair(beforeletter, nowletter) " (), focus on ')'
+    return "\n\t\n\<BS>\<UP>\<END>"
+  elseif index(g:open_brackets, beforeletter) != -1 " (hello, focus on h
+    let close_bracket_colunm = CloseBracketColumn(beforeletter)
+    if close_bracket_colunm == -1
+      return "\n\t"
     else
-        return "\n"
+      return "\n\t" . repeat("\<RIGHT>", close_bracket_colunm) . "\n\<BS>\<UP>\<ESC>I"
     endif
+  elseif index(g:close_brackets, nowletter) != -1 " (hello world), focus on )
+    return "\n\<ESC>O\t"
+  else
+    return "\n"
+  endif
 endfunction
 " delete pair close bracket when remove open bracket
 function! BracketBackspace()
-    let beforeletter = getline(".")[col(".") - 2]
-    let nowletter = getline(".")[col(".") - 1]
-    if IsPair(beforeletter, nowletter)
-        return "\<RIGHT>\<BS>\<BS>"
-    else
-        return "\<BS>"
-    endif
+  let beforeletter = getline(".")[col(".") - 2]
+  let nowletter = getline(".")[col(".") - 1]
+  if IsPair(beforeletter, nowletter)
+      return "\<RIGHT>\<BS>\<BS>"
+  else
+      return "\<BS>"
+  endif
 endfunction
 
 " functions to handle org
 let org_directory = expand("~/.dotfiles/org.d")
 " open org.md
 function! OrgOpen()
-    let org_file = g:org_directory . "/" . "org.md"
-    call timer_start(10, { -> execute('edit ' . fnameescape(org_file))})
+  let org_file = g:org_directory . "/" . "org.md"
+  call timer_start(10, { -> execute('edit ' . fnameescape(org_file))})
 endfunction
 " pull org repository
 function! OrgSave()
-    let current_datetime = strftime("%Y/%m/%d/%H:%M")
-    execute "!git -C " . g:org_directory . " add ."
-    execute "!git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgSave\'"
-    execute "!git -C " . g:org_directory . " push"
+  let current_datetime = strftime("%Y/%m/%d/%H:%M")
+  execute "!git -C " . g:org_directory . " add ."
+  execute "!git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgSave\'"
+  execute "!git -C " . g:org_directory . " push"
 endfunction
 function! OrgLoad()
-    execute "!git -C " . g:org_directory . " pull"
+  execute "!git -C " . g:org_directory . " pull"
 endfunction
 
 
 "" indent settings
 set expandtab
-set shiftwidth=4
 set autoindent
 set smarttab
 filetype indent off
@@ -192,16 +191,6 @@ nnoremap <expr> <leader>ol OrgLoad()
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap U <C-r>
-"" remaps depending on buffer type
-function LispRemap()
-    setlocal lisp
-endfunction
-function NoLispRemap()
-    inoremap <buffer> <silent> <expr> <BS> BracketBackspace()
-    inoremap <buffer> <silent> <expr> <CR> IndentBraces()
-endfunction
-autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
-autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call NoLispRemap()
 
 " representations
 "set cursorline
@@ -225,25 +214,25 @@ endif
 "" coloring
 " overwrite coloring
 function OverWriteColor()
-    let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
-    let l:listchars_guibg = synIDattr(synIDtrans(hlID('Title')),      'fg', 'gui')
-    execute 'hi NonText    guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
-    execute 'hi Whitespace guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
-    execute 'hi SpecialKey guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
-    if has('nvim')
-        hi Normal ctermbg=None guibg=None
-        hi NormalNC ctermbg=None guibg=None
-    else
-        hi Normal ctermbg=None
-        hi NormalNC ctermbg=None
-    endif
+  let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
+  let l:listchars_guibg = synIDattr(synIDtrans(hlID('Title')),      'fg', 'gui')
+  execute 'hi NonText    guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
+  execute 'hi Whitespace guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
+  execute 'hi SpecialKey guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
+  if has('nvim')
+    hi Normal ctermbg=None guibg=None
+    hi NormalNC ctermbg=None guibg=None
+  else
+    hi Normal ctermbg=None
+    hi NormalNC ctermbg=None
+  endif
 endfunction
 autocmd ColorScheme * call OverWriteColor()
 function ChangeColorInsertEnter()
-    set nocursorline
+  set nocursorline
 endfunction
 function ChangeColorInsertLeave()
-    set cursorline
+  set cursorline
 endfunction
 set cursorline
 autocmd InsertEnter * call ChangeColorInsertEnter()
@@ -254,13 +243,32 @@ syntax on
 syntax enable
 set background=dark
 if has('nvim')
-    colorscheme nightfox
+  colorscheme nightfox
 else
-    colorscheme iceberg
+  colorscheme iceberg
 endif
+
+" filetype setting
+function LispRemap()
+  setlocal lisp
+endfunction
+function OtherRemap()
+  inoremap <buffer> <silent> <expr> <BS> BracketBackspace()
+  inoremap <buffer> <silent> <expr> <CR> IndentBraces()
+endfunction
+autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
+autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call OtherRemap()
+function IndentWidth2()
+  setlocal shiftwidth=2
+endfunction
+function IndentWidth4()
+  setlocal shiftwidth=4
+endfunction
+autocmd BufNewFile,BufReadPost *.md,*.vim call IndentWidth2()
+autocmd BufNewFile,BufReadPost * if index(['md', 'vim'], expand('%:e')) < 0 | call IndentWidth4()
 
 let g:nvim_prefix = "~/.config/nvim/"
 if !filereadable(expand("~/.config/nvim/local.vim"))
-    silent! execute "call system('touch ~/.config/nvim/local.vim')"
+  silent! execute "call system('touch ~/.config/nvim/local.vim')"
 endif
 execute "source " . g:nvim_prefix . "local.vim"
