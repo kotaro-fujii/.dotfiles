@@ -180,6 +180,8 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
+nnoremap <C-l> <C-w>w
+nnoremap <C-h> <C-w>W
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
