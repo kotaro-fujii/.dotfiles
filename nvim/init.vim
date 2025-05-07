@@ -248,7 +248,7 @@ else
   colorscheme iceberg
 endif
 
-" filetype setting
+"" change remap in reference to buffertype
 function LispRemap()
   setlocal lisp
 endfunction
@@ -258,6 +258,7 @@ function OtherRemap()
 endfunction
 autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
 autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call OtherRemap()
+"" indent settings
 function IndentWidth2()
   setlocal shiftwidth=2
 endfunction
