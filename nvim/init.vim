@@ -267,8 +267,11 @@ endfunction
 function IndentWidth4()
   setlocal shiftwidth=4
 endfunction
-autocmd BufNewFile,BufReadPost *.md,*.vim call IndentWidth2()
-autocmd BufNewFile,BufReadPost * if index(['md', 'vim'], expand('%:e')) < 0 | call IndentWidth4()
+let indent_width_2_file_formats = ['md', 'vim', 'tex', 'sh', 'bash', 'zsh']
+autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) >= 0 | call IndentWidth2()
+autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) < 0 | call IndentWidth2()
+"autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) >= 0 | call IndentWidth2()
+"autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) < 0 | call IndentWidth4()
 
 let g:nvim_prefix = "~/.config/nvim/"
 if !filereadable(expand("~/.config/nvim/local.vim"))
