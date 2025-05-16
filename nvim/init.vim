@@ -270,7 +270,7 @@ function IndentWidth4()
 endfunction
 let indent_width_2_file_formats = ['md', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh']
 autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) >= 0 | call IndentWidth2()
-autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) < 0 | call IndentWidth2()
+autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) < 0 | call IndentWidth4()
 "autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) >= 0 | call IndentWidth2()
 "autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) < 0 | call IndentWidth4()
 
