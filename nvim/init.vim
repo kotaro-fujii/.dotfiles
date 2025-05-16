@@ -268,7 +268,7 @@ endfunction
 function IndentWidth4()
   setlocal shiftwidth=4
 endfunction
-let indent_width_2_file_formats = ['md', 'vim', 'tex', 'sh', 'bash', 'zsh']
+let indent_width_2_file_formats = ['md', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh']
 autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) >= 0 | call IndentWidth2()
 autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) < 0 | call IndentWidth2()
 "autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) >= 0 | call IndentWidth2()
