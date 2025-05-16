@@ -193,6 +193,7 @@ nnoremap <expr> <leader>ol OrgLoad()
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap U <C-r>
+nnoremap <leader>r :reg<CR>
 
 " representations
 "set cursorline
