@@ -262,17 +262,15 @@ endfunction
 autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
 autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call OtherRemap()
 "" indent settings
-function IndentWidth2()
-  setlocal shiftwidth=2
+function IndentWidthSet()
+  let indent_width_2_file_formats = ['md', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh']
+  if index(indent_width_2_file_formats, &filetype) >=0
+    setlocal shiftwidth=2
+  else
+    setlocal shiftwidth=4
+  endif
 endfunction
-function IndentWidth4()
-  setlocal shiftwidth=4
-endfunction
-let indent_width_2_file_formats = ['md', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh']
-autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) >= 0 | call IndentWidth2()
-autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, &filetype) < 0 | call IndentWidth4()
-"autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) >= 0 | call IndentWidth2()
-"autocmd BufNewFile,BufReadPost * if index(indent_width_2_file_formats, expand('%:e')) < 0 | call IndentWidth4()
+autocmd BufNewFile,BufReadPost * call IndentWidthSet()
 
 let g:nvim_prefix = "~/.config/nvim/"
 if !filereadable(expand("~/.config/nvim/local.vim"))
