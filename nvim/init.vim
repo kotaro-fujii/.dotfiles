@@ -46,6 +46,7 @@ set rtp+=$HOME/.dotfiles/fzf
 " functions about bracket operation
 let open_brackets = ["(", "{", "[", "\"", "\'"]
 let close_brackets = [")", "}", "]", "\"", "\'"]
+
 " judge that given two characters is pair bracket
 function! IsPair(beforeletter, nowletter)
   if index(g:open_brackets, a:beforeletter) == -1
@@ -55,6 +56,7 @@ function! IsPair(beforeletter, nowletter)
   else
     return 0
 endfunction
+
 " find pair bracket from same line
 function! CloseBracketColumn(beforeletter)
   let line_tail = strpart(getline('.'), col('.') - 1)
@@ -75,6 +77,7 @@ function! CloseBracketColumn(beforeletter)
   endfor
   return -1
 endfunction
+
 " format string when start new line
 function! IndentBraces()
   let beforeletter = getline(".")[col(".") - 2]
@@ -96,6 +99,7 @@ function! IndentBraces()
     return "\n"
   endif
 endfunction
+
 " delete pair close bracket when remove open bracket
 function! BracketBackspace()
   let beforeletter = getline(".")[col(".") - 2]
@@ -105,24 +109,6 @@ function! BracketBackspace()
   else
       return "\<BS>"
   endif
-endfunction
-
-" functions to handle org
-let org_directory = expand("~/.dotfiles/org.d")
-" open org.md
-function! OrgOpen()
-  let org_file = g:org_directory . "/" . "org.md"
-  call timer_start(10, { -> execute('edit ' . fnameescape(org_file))})
-endfunction
-" pull org repository
-function! OrgSave()
-  let current_datetime = strftime("%Y/%m/%d/%H:%M")
-  execute "!git -C " . g:org_directory . " add ."
-  execute "!git -C " . g:org_directory . " commit -m \'Commit at " . current_datetime . " from OrgSave\'"
-  execute "!git -C " . g:org_directory . " push"
-endfunction
-function! OrgLoad()
-  execute "!git -C " . g:org_directory . " pull"
 endfunction
 
 
@@ -139,10 +125,6 @@ set wildmode=list,full
 set mouse=
 set timeoutlen=500
 set clipboard+=unnamedplus
-"" terminal settings
-"if has('nvim')
-"  autocmd TermOpen * startinsert
-"endif
 
 " remap
 "" brackets
@@ -186,10 +168,6 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
-"" remaps to handle org
-nnoremap <expr> <leader>oo OrgOpen()
-nnoremap <expr> <leader>os OrgSave()
-nnoremap <expr> <leader>ol OrgLoad()
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap U <C-r>
@@ -205,16 +183,40 @@ set list
 set completeopt=menu,preview
 set hlsearch
 set incsearch
+
 "" folding
 autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
 autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent! loadview | endif
 set viewoptions-=options
+
 "" terminal representation
 if has('nvim')
   autocmd TermOpen * setlocal nonumber
   autocmd TermOpen * setlocal norelativenumber
 endif
+
 "" coloring
+function ChangeColorInsertEnter()
+  set nocursorline
+endfunction
+function ChangeColorInsertLeave()
+  set cursorline
+endfunction
+set cursorline
+autocmd InsertEnter * call ChangeColorInsertEnter()
+autocmd InsertLeave * call ChangeColorInsertLeave()
+
+" color scheme settings
+let mysyntaxfile = "~/.vim/syntax/syntax.vim"
+syntax on
+syntax enable
+set background=dark
+if has('nvim')
+  colorscheme nightfox
+else
+  colorscheme iceberg
+endif
+
 " overwrite coloring
 function OverWriteColor()
   let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
@@ -231,25 +233,6 @@ function OverWriteColor()
   endif
 endfunction
 autocmd ColorScheme * call OverWriteColor()
-function ChangeColorInsertEnter()
-  set nocursorline
-endfunction
-function ChangeColorInsertLeave()
-  set cursorline
-endfunction
-set cursorline
-autocmd InsertEnter * call ChangeColorInsertEnter()
-autocmd InsertLeave * call ChangeColorInsertLeave()
-" load color scheme
-let mysyntaxfile = "~/.vim/syntax/syntax.vim"
-syntax on
-syntax enable
-set background=dark
-if has('nvim')
-  colorscheme nightfox
-else
-  colorscheme iceberg
-endif
 
 "" change remap in reference to buffertype
 function LispRemap()
@@ -261,6 +244,7 @@ function OtherRemap()
 endfunction
 autocmd BufNewFile,BufReadPost *.lisp call LispRemap()
 autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call OtherRemap()
+
 "" indent settings
 function IndentWidthSet()
   let indent_width_2_file_formats = ['md', 'markdown', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh']
@@ -272,6 +256,7 @@ function IndentWidthSet()
 endfunction
 autocmd BufNewFile,BufReadPost * call IndentWidthSet()
 
+"" load local settings
 let g:nvim_prefix = "~/.config/nvim/"
 if !filereadable(expand("~/.config/nvim/local.vim"))
   silent! execute "call system('touch ~/.config/nvim/local.vim')"
