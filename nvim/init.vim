@@ -206,17 +206,6 @@ set cursorline
 autocmd InsertEnter * call ChangeColorInsertEnter()
 autocmd InsertLeave * call ChangeColorInsertLeave()
 
-" color scheme settings
-let mysyntaxfile = "~/.vim/syntax/syntax.vim"
-syntax on
-syntax enable
-set background=dark
-if has('nvim')
-  colorscheme nightfox
-else
-  colorscheme iceberg
-endif
-
 " overwrite coloring
 function OverWriteColor()
   let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
@@ -233,6 +222,17 @@ function OverWriteColor()
   endif
 endfunction
 autocmd ColorScheme * call OverWriteColor()
+
+" color scheme settings
+let mysyntaxfile = "~/.vim/syntax/syntax.vim"
+syntax on
+syntax enable
+set background=dark
+if has('nvim')
+  colorscheme nightfox
+else
+  colorscheme iceberg
+endif
 
 "" change remap in reference to buffertype
 function LispRemap()
