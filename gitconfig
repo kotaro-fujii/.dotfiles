@@ -17,3 +17,5 @@
     br = branch
 [color]
     ui = auto
+[core]
+    editor = vim
