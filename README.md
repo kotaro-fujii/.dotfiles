@@ -2,8 +2,9 @@
 ## nvim
 to-do list
 - markdown入力補助
+
 ## wezterm
-local setting
+local setting example:
 ```.wezterm_local.lua
 local config = {}
 config.background = {
@@ -20,7 +21,9 @@ config.background = {
 }
 return config
 ```
+
 ## alacritty
+local setting example:
 ```local.toml
 [window]
 opacity = 0.7
