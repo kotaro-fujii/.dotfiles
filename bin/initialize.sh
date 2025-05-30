@@ -36,11 +36,17 @@ if [ -f /etc/wsl.conf ]; then
         ssh -T git@github.com && git clone https://github.com/alacritty/alacritty-theme $windows_alacritty/themes
     fi
 fi
-# wezterm setting in windows
+# wezterm setting
 if [ -f /etc/wsl.conf ]; then
-    cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
-    wezterm_local=$windows_homedir/.wezterm_local.lua
-    [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm_local.lua $wezterm_local
+  # windows
+  cp $dotfiles_prefix/wezterm/wezterm_windows.lua $windows_homedir/.wezterm.lua
+  wezterm_local=$windows_homedir/.wezterm_local.lua
+  [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm/wezterm_local.lua $wezterm_local
+else
+  # linux
+  wezterm_dir=$HOME/.config/wezterm
+  [ ! -d $wezterm_dir ] && mkdir $wezterm_dir
+  ln -s $dotfiles_prefix/wezterm/wezterm_linux.lua $wezterm_dir/wezterm.lua
 fi
 ## org setting
 #[ ! -d $dotfiles_prefix/org.d ] && git clone git@github.com:kotaro-fujii/org.d.git $dotfiles_prefix/org.d
