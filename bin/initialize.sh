@@ -39,9 +39,9 @@ fi
 # wezterm setting
 if [ -f /etc/wsl.conf ]; then
   # windows
-  cp $dotfiles_prefix/wezterm.lua $windows_homedir/.wezterm.lua
+  cp $dotfiles_prefix/wezterm/wezterm_windows.lua $windows_homedir/.wezterm.lua
   wezterm_local=$windows_homedir/.wezterm_local.lua
-  [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm_local.lua $wezterm_local
+  [ ! -f $wezterm_local ] && cp $dotfiles_prefix/wezterm/wezterm_local.lua $wezterm_local
 else
   # linux
   wezterm_dir=$HOME/.config/wezterm
