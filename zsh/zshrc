@@ -1,18 +1,33 @@
+function is_bash() {
+  if [[ $0 =~ bash ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+function is_zsh() {
+  if [[ $0 =~ zsh ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 # zsh setting
-if [[ $0 =~ zsh ]]; then
+if is_zsh; then
     export ZSH="$HOME/.oh-my-zsh"
     ZSH_THEME="fkota_mgutz"
     ZSH_CUSTOM=$HOME/.zsh
     plugins=(git)
     source $ZSH/oh-my-zsh.sh
 # bash setting
-elif [[ $0 =~ bash ]]; then
+elif is_bash; then
     PS1='\[\e[1;36m\]@\h \[\e[1;32m\]\W \[\e[1;31m\]\$\[\e[0m\] '
     alias ls='ls --color=tty'
 fi
 
 # initialize applications
-if [[ $0 =~ zsh ]]; then
+if is_zsh; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 elif [[ $0 =~ bash ]]; then
     [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -26,11 +41,11 @@ alias ll='ls -Al'
 alias la='ls -A'
 alias lr='ls -R'
 alias wl='wc -l'
-alias rdln='readlink'
+alias rl='readlink'
+alias rp='realpath'
 alias G='grep'
 alias GE='grep -E'
 alias zz='source ~/.zshrc'
-
 ## aliases to execute application
 alias e='explorer.exe'
 alias py='python'
@@ -45,7 +60,13 @@ hash -d dot=$HOME/.dotfiles
 
 # environment variables
 export PATH=$HOME/.bin:$PATH
-export WORDCHARS='*?_-.~!#$%^[]'
+
+if is_zsh; then
+  export WORDCHARS='*?_-.~!#$%^[]'
+elif is_bash; then
+  stty werase undef
+  bind '"\C-w": unix-filename-rubout'
+fi
 
 # apply local setting
 if [ -e $ZSH_CUSTOM/local.sh ]; then
