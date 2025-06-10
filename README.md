@@ -1,4 +1,12 @@
 # .dotfiles
+
+## zsh
+### zshrc
+Zsh setting in interactive shell.
+
+### local.sh
+This file is sourced in zshrc.
+
 ## nvim
 to-do list
 - markdown入力補助
