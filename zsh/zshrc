@@ -29,7 +29,7 @@ fi
 # initialize applications
 if is_zsh; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-elif [[ $0 =~ bash ]]; then
+elif is_bash; then
     [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
 
