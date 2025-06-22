@@ -159,6 +159,7 @@ nnoremap <leader>e :e
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>B :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
@@ -206,6 +207,12 @@ set cursorline
 autocmd InsertEnter * call ChangeColorInsertEnter()
 autocmd InsertLeave * call ChangeColorInsertLeave()
 
+function ToggleBackgroundColor()
+  let g:none_background_color = 1 - g:none_background_color
+  execute 'colorscheme ' . g:colors_name
+endfunction
+
+let g:none_background_color = 1
 " overwrite coloring
 function OverWriteColor()
   let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
@@ -214,11 +221,15 @@ function OverWriteColor()
   execute 'hi Whitespace guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
   execute 'hi SpecialKey guifg='. l:listchars_guifg . ' guibg=' . l:listchars_guibg
   if has('nvim')
-    hi Normal ctermbg=None guibg=None
-    hi NormalNC ctermbg=None guibg=None
+    if g:none_background_color
+      hi Normal ctermbg=None guibg=None
+      hi NormalNC ctermbg=None guibg=None
+    endif
   else
-    hi Normal ctermbg=None
-    hi NormalNC ctermbg=None
+    if g:none_background_color
+      hi Normal ctermbg=None
+      hi NormalNC ctermbg=None
+    endif
   endif
 endfunction
 autocmd ColorScheme * call OverWriteColor()
