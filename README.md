@@ -1,4 +1,7 @@
 # .dotfiles
+## TODO
+- nvim: markdown入力補助
+- nvim: タブの扱い
 
 ## zsh
 ### zshrc
@@ -6,10 +9,6 @@ Zsh setting in interactive shell.
 
 ### local.sh
 This file is sourced in zshrc.
-
-## nvim
-to-do list
-- markdown入力補助
 
 ## wezterm
 local setting example:
