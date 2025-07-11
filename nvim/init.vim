@@ -258,7 +258,7 @@ autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | call OtherRemap()
 
 "" indent settings
 function IndentWidthSet()
-  let indent_width_2_file_formats = ['md', 'markdown', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh']
+  let indent_width_2_file_formats = ['md', 'markdown', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh', 'bib']
   if index(indent_width_2_file_formats, &filetype) >=0
     setlocal shiftwidth=2
   else
