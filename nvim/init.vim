@@ -137,18 +137,20 @@ inoremap '' '
 inoremap "" "
 inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
+
 "" remaps to escape
-inoremap <silent> kj <ESC>
-inoremap <silent> jk <ESC>
-vnoremap <silent> vv <ESC>
-cnoremap <silent> kj <C-u><ESC>
-cnoremap <silent> jk <C-u><ESC>
-tnoremap <silent> kj <c-\><c-n>
-tnoremap <silent> jk <c-\><c-n>
+"inoremap <silent> kj <ESC>
+"inoremap <silent> jk <ESC>
+"cnoremap <silent> kj <C-u><ESC>
+"cnoremap <silent> jk <C-u><ESC>
+"tnoremap <silent> kj <c-\><c-n>
+"tnoremap <silent> jk <c-\><c-n>
 tnoremap <silent> <ESC> <c-\><c-n>
+
 "" motion remaps
 noremap L $
 noremap H ^
+
 "" buffer and window operations
 let mapleader = "\<Space>"
 nnoremap <leader>h :split<CR>
@@ -161,14 +163,21 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>B :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
+
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
 nnoremap <C-l> <C-w>w
 nnoremap <C-h> <C-w>W
+nnoremap <M-h> :tabp<CR>
+nnoremap <M-l> :tabn<CR>
+nnoremap <leader>c :tabnew %<CR>
+nnoremap <leader>C :tabclose<CR>
+
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
+
 "" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap U <C-r>
