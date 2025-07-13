@@ -127,6 +127,14 @@ config.background = {
 return config
 ```
 
+### font installation
+```sh
+wget https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_v2.10.0.zip
+unzip HackGen_v2.10.0.zip
+mv HackGen_v2.10.0.zip ~/.fonts
+fc-cache -fv
+```
+
 ## neovim
 neovimはターミナル上で動作するテキストエディタです。
 短時間での起動、素早い操作が特徴です。
