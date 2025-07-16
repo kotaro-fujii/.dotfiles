@@ -71,6 +71,12 @@ alias bat='bat -pp'
 alias nv='nvim'
 alias tm='tmux'
 alias em='emacs -nw'
+alias caf="conda activate \$(conda env list | tr -d \* | tail -n +4 | head -n -1 | awk '{print \$1}' | fzf)"
+alias cac="conda activate"
+alias cif="conda info -e"
+alias maf="mamba activate \$(mamba env list | tr -d \* | tail -n +3 | awk '{print \$1}' | fzf)"
+alias mac="mamba activate"
+alias mif="mamba info -e"
 
 ########################################
 # ハッシュディレクトリ
