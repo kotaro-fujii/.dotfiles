@@ -99,6 +99,14 @@ cd .dotfiles
 - fzf
 
 ## alacritty
+タブ機能などの余計な機能を排除したシンプルなターミナルエミュレータです。
+GPUを活用した高速な画面描写が特徴です。
+tomlファイルを設定することで操作や見た目のカスタマイズが可能です。
+
+設定ファイルとして、gitでトラッキングしている`alacritty/alacritty.toml`と
+トラッキングしていない`~/AppData/Roaming/alacritty/local.toml`(Windowsの場合)を読み込みます。
+
+以下は設定例です。
 ```local.toml
 [window]
 opacity = 0.7
@@ -110,6 +118,11 @@ import = [
 ```
 
 ## wezterm
+alacrittyとは逆に様々な機能を盛り込んだターミナルエミュレータです。
+alacrittyと同様にGPUを活用しています。
+`lua`ファイルによる柔軟な設定が可能です。
+
+以下は設定例です(Windows)。
 ```.wezterm_local.lua
 local config = {}
 config.background = {
@@ -127,7 +140,7 @@ config.background = {
 return config
 ```
 
-### font installation
+## font installation
 ```sh
 wget https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_v2.10.0.zip
 unzip HackGen_v2.10.0.zip
@@ -136,16 +149,26 @@ fc-cache -fv
 ```
 
 ## neovim
-neovimはターミナル上で動作するテキストエディタです。
-短時間での起動、素早い操作が特徴です。
+neovimはターミナル上で動作するテキストエディタで、
+短時間での起動、素早い操作、柔軟な拡張性が特徴です。
+VSCodeなどのエディタと比較して学習コストが高いですが、
+習得する価値は絶大です。
+環境によっては(特に古い環境では)インストール手順が定まっていませんので
 ご自身でインストールしてください。
 
 ## emacs
+上記のneovim(あるいはVim)と並ぶテキストエディタです。
+簡単な設定は書いていますがほぼ整備していません。
 
 ## fzf
 ファイルやコマンド実行履歴をあいまい検索できるソフトウェアです。
 コマンドラインにて、 `ctrl + t` を押すとファイル名のあいまい検索、
 `ctrl + r` を押すとコマンド実行履歴を検索できます。
+
+## bat
+`cat` コマンドにシンタックスハイライトの機能を足したようなプログラムです。
+`zshrc` でのalias `bat -pp` は `cat` と同様に標準出力を行うためのコマンドです。
+オプションを外すと `less` と同様のページャの振る舞いになります。
 
 ---
 
@@ -155,6 +178,7 @@ neovimはターミナル上で動作するテキストエディタです。
 
 # 検証済み環境
 - WSL
+  - ubuntu 24.04
 - VirtualBox
   - Ubuntu
 - Dockerコンテナ
