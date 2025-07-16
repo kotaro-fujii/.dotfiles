@@ -140,14 +140,6 @@ config.background = {
 return config
 ```
 
-## font installation
-```sh
-wget https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_v2.10.0.zip
-unzip HackGen_v2.10.0.zip
-mv HackGen_v2.10.0.zip ~/.fonts
-fc-cache -fv
-```
-
 ## neovim
 neovimはターミナル上で動作するテキストエディタで、
 短時間での起動、素早い操作、柔軟な拡張性が特徴です。
@@ -169,6 +161,18 @@ VSCodeなどのエディタと比較して学習コストが高いですが、
 `cat` コマンドにシンタックスハイライトの機能を足したようなプログラムです。
 `zshrc` でのalias `bat -pp` は `cat` と同様に標準出力を行うためのコマンドです。
 オプションを外すと `less` と同様のページャの振る舞いになります。
+
+## font installation
+`alacritty`, `wezterm` といったターミナルエミュレータのフォントを変更する際、
+新たにインストールする必要がある場合、以下のような操作でインストールできます。
+
+example: 和英文用コードフォント`HackGen Console`をインストールするコマンド
+```sh
+wget https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_v2.10.0.zip
+unzip HackGen_v2.10.0.zip
+mv HackGen_v2.10.0.zip ~/.fonts
+fc-cache -fv
+```
 
 ---
 
