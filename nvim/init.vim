@@ -190,8 +190,9 @@ nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 
-" ハイライト解除
+" その他remap
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+nnoremap U <C-r>
 
 " ===========================================
 " 表示・見た目設定
