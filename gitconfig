@@ -1,6 +1,6 @@
-[user]
-    email = fujii.kotaro.l7@elms.hokudai.ac.jp
-    name = kfujii
+[include]
+    path = ~/.profile.gitconfig
+
 [init]
     defaultBranch = main
 [alias]
