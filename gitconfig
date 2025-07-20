@@ -15,6 +15,7 @@
     ad = add
     ada = add .
     br = branch
+    ls = ls-files
 [color]
     ui = auto
 [core]
