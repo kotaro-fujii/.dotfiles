@@ -162,7 +162,7 @@ let mapleader = "\<Space>"
 nnoremap <leader>h :split<CR>
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>t :terminal<CR>
-nnoremap <leader>d :bdelete<CR>
+nnoremap <leader>d :bnext \| bdelete #<CR>
 nnoremap <leader>e :e 
 nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
