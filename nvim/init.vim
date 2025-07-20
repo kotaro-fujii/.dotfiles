@@ -193,6 +193,7 @@ nnoremap <leader>b :Buffers<CR>
 " その他remap
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap U <C-r>
+nnoremap <leader>r :reg<CR>
 
 " ===========================================
 " 表示・見た目設定
