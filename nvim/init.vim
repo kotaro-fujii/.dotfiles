@@ -151,11 +151,15 @@ inoremap <> <><LEFT>
 " ESC でモード切替（terminal）
 tnoremap <silent> <ESC> <C-\><C-n>
 
-" 行頭・行末移動
+" モーション
 noremap H ^
 noremap L $
+noremap K *zz
+noremap n nzz
+noremap N Nzz
 
 " Leader キーを Space に
+nnoremap <Space> <nop>
 let mapleader = "\<Space>"
 
 " よく使うコマンド
