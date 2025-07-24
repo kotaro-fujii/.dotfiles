@@ -51,9 +51,15 @@ alias c='cd'
 alias b='cd ../'
 
 ## lsコマンド系
-alias ll='ls -Al'    # 詳細表示＋隠しファイル
-alias la='ls -A'     # 隠しファイルを含む
-alias lr='ls -R'     # 再帰的に表示
+## 大文字コマンドは隠しを表示
+alias l='ls -F'   # パーミッションやファイル形式がみやすい
+alias ll='ls -l'  # 詳細表示＋隠しファイル
+alias lr='ls -R'  # 再帰的に表示
+
+alias LS='ls -A'
+alias L='ls -AF'
+alias LL='ls -Al'
+alias LR='ls -AR'
 
 ## その他基本系
 alias wl='wc -l'
