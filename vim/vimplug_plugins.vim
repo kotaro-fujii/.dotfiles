@@ -1,0 +1,10 @@
+" Plug 'scrooloose/nerdtree'
+" Plug 'jistr/vim-nerdtree-tabs'
+
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'simeji/winresizer'
+Plug 'mechatroner/rainbow_csv'
+Plug 'cocopon/iceberg.vim'
+"Plug 'EdenEast/nightfox.nvim'

@@ -2,48 +2,72 @@
 " プラグイン設定：dein.vim
 " ===========================================
 
-" dein.vim を置くディレクトリ設定
-let s:dein_dir = expand('~/.config/nvim/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if has('nvim')
 
-" dein.vim が無ければ clone して導入
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim ' . s:dein_repo_dir
+  " dein.vim を置くディレクトリ設定
+  let s:dein_dir = expand('~/.config/nvim/dein')
+  let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+  " dein.vim が無ければ clone して導入
+  if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+      execute '!git clone https://github.com/Shougo/dein.vim ' . s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . s:dein_repo_dir
   endif
-  execute 'set runtimepath^=' . s:dein_repo_dir
-endif
 
-" dein の初期化とプラグイン読み込み
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+  " dein の初期化とプラグイン読み込み
+  if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
-  " プラグイン定義ファイル dein.toml
-  let s:rc_dir = expand('~/.config/nvim')
-  if !isdirectory(s:rc_dir)
-    call mkdir(s:rc_dir, 'p')
+    " プラグイン定義ファイル dein.toml
+    let s:rc_dir = expand('~/.config/nvim')
+    if !isdirectory(s:rc_dir)
+      call mkdir(s:rc_dir, 'p')
+    endif
+    let s:toml = s:rc_dir . '/dein.toml'
+    call dein#load_toml(s:toml, {'lazy': 0})
+
+    call dein#end()
+    call dein#save_state()
   endif
-  let s:toml = s:rc_dir . '/dein.toml'
-  call dein#load_toml(s:toml, {'lazy': 0})
 
-  call dein#end()
-  call dein#save_state()
+  " 未インストールプラグインがあればインストール
+  if dein#check_install()
+    call dein#install()
+  endif
+
+  " 削除されたプラグインをクリーンアップ
+  let s:removed_plugins = dein#check_clean()
+  if len(s:removed_plugins) > 0
+    call map(s:removed_plugins, "delete(v:val, 'rf')")
+    call dein#recache_runtimepath()
+  endif
+
+  " fzf を runtimepath に追加
+  set rtp+=$HOME/.dotfiles/fzf
+
+else
+
+  " vim-plugが無ければautoloadにダウンロード
+  let s:vimplug_file = expand('~/.vim/autoload/plug.vim')
+  if !filereadable(s:vimplug_file)
+    execute '!curl -fLo ' . s:vimplug_file . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  endif
+
+  " vim-plugのpluginファイルをsource
+  let s:vimplug_plugins = expand('~/.vim/vimplug_plugins.vim')
+  if !filereadable(s:vimplug_plugins)
+    execute '!touch ' . s:vimplug_plugins
+  endif
+  "call plug#begin(s:vimplug_plugins)
+  call plug#begin()
+  execute "source " . s:vimplug_plugins
+  call plug#end()
+
+  set rtp+=$HOME/.dotfiles/fzf
+
 endif
-
-" 未インストールプラグインがあればインストール
-if dein#check_install()
-  call dein#install()
-endif
-
-" 削除されたプラグインをクリーンアップ
-let s:removed_plugins = dein#check_clean()
-if len(s:removed_plugins) > 0
-  call map(s:removed_plugins, "delete(v:val, 'rf')")
-  call dein#recache_runtimepath()
-endif
-
-" fzf を runtimepath に追加
-set rtp+=$HOME/.dotfiles/fzf
 
 " ===========================================
 " 自作関数：カッコ補完やインデント制御
@@ -149,7 +173,9 @@ inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
 
 " ESC でモード切替（terminal）
-tnoremap <silent> <ESC> <C-\><C-n>
+if has('nvim')
+  tnoremap <silent> <ESC> <C-\><C-n>
+endif
 
 " モーション
 noremap H ^

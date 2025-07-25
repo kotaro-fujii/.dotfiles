@@ -4,3 +4,6 @@
 /fzf
 /bat
 /org.d
+/vim/autoload
+/vim/plugged
+/vim/view

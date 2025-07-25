@@ -23,7 +23,7 @@ ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 dir_link $dotfiles_prefix/nvim $HOME/.config/nvim
 # .vim setting
-dir_link $dotfiles_prefix/nvim $HOME/.vim
+dir_link $dotfiles_prefix/vim $HOME/.vim
 # emacs setting
 dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
 # alacritty setting
