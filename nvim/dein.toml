@@ -19,3 +19,6 @@ repo = 'mechatroner/rainbow_csv'
 repo = 'cocopon/iceberg.vim'
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
+
+[[plugins]]
+repo = 'kaarmu/typst.vim.git'
