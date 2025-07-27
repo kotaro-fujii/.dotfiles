@@ -161,7 +161,7 @@ filetype plugin indent off
 " キーマップ設定
 " ===========================================
 
-" 括弧補完（インサートモード）
+" インサートモードでの補完
 inoremap { {}<LEFT>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
@@ -171,6 +171,7 @@ inoremap '' '
 inoremap "" "
 inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
+inoremap <C-s> ==========
 
 " ESC でモード切替（terminal）
 if has('nvim')
