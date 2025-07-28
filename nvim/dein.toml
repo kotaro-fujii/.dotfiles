@@ -22,3 +22,5 @@ repo = 'EdenEast/nightfox.nvim'
 
 [[plugins]]
 repo = 'kaarmu/typst.vim.git'
+[[plugins]]
+repo = 'https://github.com/lervag/vimtex.git'
