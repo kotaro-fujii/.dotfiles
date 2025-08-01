@@ -92,7 +92,9 @@ hash -d dot=$HOME/.dotfiles  # ~dot で ~/.dotfiles に移動できる
 ########################################
 # 環境変数
 ########################################
-export PATH="$HOME/.bin:$PATH" # 自作スクリプトをPATHに追加
+# 自作スクリプトをPATHに追加
+export PATH="$HOME/.dotfiles/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
 
 ########################################
 # シェル固有の細かい設定
