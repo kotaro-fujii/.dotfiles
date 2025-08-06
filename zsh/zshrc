@@ -71,7 +71,7 @@ alias zz='source ~/.zshrc'    # zshrcを再読み込み
 
 ## アプリケーション起動系
 function e() {
-  realpath $1 | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\\\/g'  | xargs explorer.exe
+  realpath -P $1 | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\\\/g'  | xargs explorer.exe
 }
 alias py='python'
 alias lltx='lualatex'
