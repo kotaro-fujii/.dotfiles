@@ -1,3 +1,5 @@
+export PATH=$HOME/.bin:$PATH
+
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba shell init' !!
 export MAMBA_EXE="$HOME/.dotfiles/miniforge3/bin/mamba";
