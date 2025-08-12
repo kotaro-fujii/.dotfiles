@@ -20,7 +20,6 @@ windows_appdata=$windows_homedir/AppData/Roaming
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
 ln -sf $dotfiles_prefix/zsh/zshenv $HOME/.zshenv
 dir_link $dotfiles_prefix/zsh $HOME/.zsh
-[ ! -e $dotfiles_prefix/zsh/local.sh ] && touch $dotfiles_prefix/zsh/local.sh
 
 # bash initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
