@@ -7,3 +7,5 @@
 /vim/autoload
 /vim/plugged
 /vim/view
+/Miniforge3-*-*.sh
+/miniforge3
