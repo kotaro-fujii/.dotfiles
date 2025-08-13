@@ -178,7 +178,6 @@ fc-cache -fv
 
 # これから実装予定
 - oh-my-zshのインストール
-- vim, neovimの互換性に関する整備
 
 # 検証済み環境
 - WSL
