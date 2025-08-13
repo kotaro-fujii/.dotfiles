@@ -220,6 +220,7 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>a :Ag<CR>
 
 " その他remap
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
