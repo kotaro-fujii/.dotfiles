@@ -89,6 +89,30 @@ if [[ ! -d $dotfiles_prefix/fzf ]]; then
 fi
 dir_link $dotfiles_prefix/fzf $HOME/.fzf
 
+# the silver searcher
+# install requirements:
+#   sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+#__the_silver_searcher_url="https://geoff.greer.fm/ag/releases/the_silver_searcher-2.2.0.tar.gz"
+#__the_silver_searcher_tar_gz=$(basename $__the_silver_searcher_url)
+#__the_silver_searcher_dir=$(basename $__the_silver_searcher_url .tar.gz)
+#if [[ ! -d $dotfiles_prefix/$__the_silver_searcher_dir ]]; then
+#  wget -P $dotfiles_prefix $__the_silver_searcher_url \
+#    && tar zxf $__the_silver_searcher_tar_gz \
+#    && mkdir $dotfiles_prefix/the_silver_searcher \
+#    && (
+#      cd $(basename $__the_silver_searcher_tar_gz .tar.gz) \
+#        && ./configure --prefix=$dotfiles_prefix/the_silver_searcher \
+#        && make \
+#        && make install
+#    ) \
+#    && rm $__the_silver_searcher_tar_gz
+#fi
+
+if [[ ! -d $dotfiles_prefix/the_silver_searcher ]]; then
+  git clone "https://github.com/ggreer/the_silver_searcher.git" $dotfiles_prefix/the_silver_searcher \
+    && $dotfiles_prefix/the_silver_searcher/build.sh
+fi
+
 miniforge_url="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 miniforge_filename=$(basename $miniforge_url)
 [ ! -f $dotfiles_prefix/$miniforge_filename ] && \
