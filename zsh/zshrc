@@ -83,6 +83,9 @@ alias g='git'
 alias ty='typst'
 alias tyw='typst watch'
 alias tyc='typst compile'
+function tywin () {
+  powershell.exe "typst w $1"
+}
 alias caf="conda activate \$(conda env list | tr -d \* | tail -n +4 | head -n -1 | awk '{print \$1}' | fzf)"
 alias cac="conda activate"
 alias cif="conda info -e"
