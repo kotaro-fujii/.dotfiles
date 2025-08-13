@@ -195,7 +195,7 @@ nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>t :terminal<CR>
 nnoremap <leader>d :bnext \| bdelete #<CR>
 nnoremap <leader>e :e 
-nnoremap <leader>l :ls<CR>
+"nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>B :call ToggleBackgroundColor()<CR>
@@ -217,15 +217,23 @@ nnoremap <leader>C :tabclose<CR>
 
 " fzf 用
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>F :Files 
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>G :GFiles?<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>a :Ag<CR>
+nnoremap <leader>A :Ag 
+nnoremap <leader>r :Rg<CR>
+nnoremap <leader>R :Rg 
+nnoremap <leader>l :Lines<CR>
+nnoremap <leader>L :BLines<CR>
+nnoremap <leader>m :Marks<CR>
+nnoremap <leader>M :BMarks<CR>
 
 " その他remap
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap U <C-r>
-nnoremap <leader>r :reg<CR>
+"nnoremap <leader>r :reg<CR>
 
 " ===========================================
 " 表示・見た目設定
