@@ -97,6 +97,11 @@ if [[ ! -d $dotfiles_prefix/the_silver_searcher ]]; then
     && $dotfiles_prefix/the_silver_searcher/build.sh
 fi
 
+# ripgrep
+if [[ ! -f $HOME/.cargo/bin/ripgrep ]]; then
+  cargo install ripgrep
+fi
+
 # miniforge
 miniforge_url="https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 miniforge_filename=$(basename $miniforge_url)
