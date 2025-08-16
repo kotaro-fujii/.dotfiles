@@ -198,7 +198,7 @@ nnoremap <leader>e :e
 "nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>B :call ToggleBackgroundColor()<CR>
+nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 
 " バッファ移動
@@ -216,19 +216,19 @@ nnoremap <leader>c :tabnew %<CR>
 nnoremap <leader>C :tabclose<CR>
 
 " fzf 用
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>F :Files 
-nnoremap <leader>g :GFiles<CR>
-nnoremap <leader>G :GFiles?<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>a :Ag<CR>
-nnoremap <leader>A :Ag 
-nnoremap <leader>r :Rg<CR>
-nnoremap <leader>R :Rg 
-nnoremap <leader>l :Lines<CR>
-nnoremap <leader>L :BLines<CR>
-nnoremap <leader>m :Marks<CR>
-nnoremap <leader>M :BMarks<CR>
+nnoremap <leader>f         :Files<CR>
+nnoremap <leader><leader>f :Files 
+nnoremap <leader>g         :GFiles<CR>
+nnoremap <leader><leader>g :GFiles?<CR>
+nnoremap <leader>b         :Buffers<CR>
+nnoremap <leader>a         :Ag<CR>
+nnoremap <leader><leader>a :Ag 
+nnoremap <leader>r         :Rg<CR>
+nnoremap <leader><leader>r :Rg 
+nnoremap <leader>l         :Lines<CR>
+nnoremap <leader><leader>l :BLines<CR>
+nnoremap <leader>m         :Marks<CR>
+nnoremap <leader><leader>m :BMarks<CR>
 
 " その他remap
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
