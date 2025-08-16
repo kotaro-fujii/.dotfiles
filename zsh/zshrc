@@ -68,6 +68,7 @@ alias rp='realpath'
 alias G='grep'
 alias GE='grep -E'
 alias zz='source ~/.zshrc'    # zshrcを再読み込み
+alias lpath='export PATH=$PATH'
 
 # アプリケーション起動系
 function e() {
