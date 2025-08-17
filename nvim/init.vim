@@ -200,6 +200,7 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
+nnoremap <leader>i :! 
 
 " バッファ移動
 nnoremap <C-k> :bprev<CR>
