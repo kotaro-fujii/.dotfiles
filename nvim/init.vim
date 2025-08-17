@@ -3,7 +3,6 @@
 " ===========================================
 
 if has('nvim')
-
   " dein.vim を置くディレクトリ設定
   let s:dein_dir = expand('~/.config/nvim/dein')
   let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -48,7 +47,6 @@ if has('nvim')
   set rtp+=$HOME/.dotfiles/fzf
 
 else
-
   " vim-plugが無ければautoloadにダウンロード
   let s:vimplug_file = expand('~/.vim/autoload/plug.vim')
   if !filereadable(s:vimplug_file)
@@ -60,13 +58,11 @@ else
   if !filereadable(s:vimplug_plugins)
     execute '!touch ' . s:vimplug_plugins
   endif
-  "call plug#begin(s:vimplug_plugins)
   call plug#begin()
   execute "source " . s:vimplug_plugins
   call plug#end()
 
   set rtp+=$HOME/.dotfiles/fzf
-
 endif
 
 " ===========================================
@@ -85,6 +81,7 @@ function! IsPair(beforeletter, nowletter)
     return 1
   else
     return 0
+  endif
 endfunction
 
 " 同じ行内で対応する閉じカッコの位置を探す
@@ -176,6 +173,8 @@ inoremap <C-s> ==========
 " ESC でモード切替（terminal）
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
+else
+  tnoremap <silent> <ESC><ESC> <C-w>N
 endif
 
 " モーション
@@ -186,21 +185,24 @@ noremap n nzz
 noremap N Nzz
 
 " Leader キーを Space に
-nnoremap <Space> <nop>
+noremap <Space> <nop>
 let mapleader = "\<Space>"
 
 " よく使うコマンド
 nnoremap <leader>h :split<CR>
 nnoremap <leader>v :vsplit<CR>
-nnoremap <leader>t :terminal<CR>
 nnoremap <leader>d :bnext \| bdelete #<CR>
 nnoremap <leader>e :e 
-"nnoremap <leader>l :ls<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 nnoremap <leader>i :! 
+if has('nvim')
+  nnoremap <leader>t :terminal<CR>
+else
+  nnoremap <leader>t :terminal ++curwin<CR>
+endif
 
 " バッファ移動
 nnoremap <C-k> :bprev<CR>
@@ -319,15 +321,19 @@ endif
 " ===========================================
 
 " lisp ファイルは lisp モード
-autocmd BufNewFile,BufReadPost *.lisp setlocal lisp
-
+autocmd BufEnter *.lisp call LispSetting()
+function LispSetting()
+  setlocal lisp
+  inoremap <buffer> <silent> <expr> <BS> BracketBackspace()
+endfunction
 " 他ファイルは自作関数を利用
-autocmd BufNewFile,BufReadPost * if expand('%:e') !=# 'lisp' | 
-      \ inoremap <buffer> <silent> <expr> <BS> BracketBackspace() |
-      \ inoremap <buffer> <silent> <expr> <CR> IndentBraces() |
-      \ endif
+autocmd BufEnter * if expand('%:e') !=# 'lisp' |
+  \ inoremap <buffer> <silent> <expr> <BS> BracketBackspace() |
+  \ inoremap <buffer> <silent> <expr> <CR> IndentBraces() |
+  \ endif
 
 " ファイルタイプによるインデント幅設定
+autocmd BufEnter * call IndentWidthSet()
 function IndentWidthSet()
   let ft2 = ['md', 'markdown', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh', 'bib', 'typst']
   if index(ft2, &filetype) >=0
@@ -336,7 +342,6 @@ function IndentWidthSet()
     setlocal shiftwidth=4
   endif
 endfunction
-autocmd BufNewFile,BufReadPost * call IndentWidthSet()
 
 " ===========================================
 " ローカル設定の読み込み
