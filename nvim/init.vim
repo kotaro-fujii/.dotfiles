@@ -146,13 +146,24 @@ set autoindent                " 自動インデント
 set smarttab                  " スマートタブ
 set fenc=utf-8                " 文字コード
 set hidden                     " 編集中でも他のバッファを開ける
-set shell=zsh                  " シェルを zsh に
 set wildmode=list,full         " コマンド補完モード
 set mouse=                      " マウス無効
 set timeoutlen=500             " マッピング待ち時間
 set clipboard+=unnamedplus     " システムクリップボードと共有
 filetype indent off
 filetype plugin indent off
+" シェルの設定
+if executable("pwsh")
+  set shell=pwsh
+elseif executable("powershell")
+  set shell=powershell
+elseif executable("zsh")
+  set shell=zsh
+elseif executable("bash")
+  set shell=bash
+else
+  echo "None of shells are executable."
+endif
 
 " ===========================================
 " キーマップ設定
