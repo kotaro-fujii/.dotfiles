@@ -141,15 +141,15 @@ endfunction
 " ===========================================
 " エディタ基本設定
 " ===========================================
-set expandtab                 " タブをスペースに
-set autoindent                " 自動インデント
-set smarttab                  " スマートタブ
-set fenc=utf-8                " 文字コード
-set hidden                     " 編集中でも他のバッファを開ける
-set wildmode=list,full         " コマンド補完モード
-set mouse=                      " マウス無効
-set timeoutlen=500             " マッピング待ち時間
-set clipboard+=unnamedplus     " システムクリップボードと共有
+set expandtab              " タブをスペースに
+set autoindent             " 自動インデント
+set smarttab               " スマートタブ
+set fenc=utf-8             " 文字コード
+set hidden                 " 編集中でも他のバッファを開ける
+set wildmode=list,full     " コマンド補完モード
+set mouse=                 " マウス無効
+set timeoutlen=500         " マッピング待ち時間
+set clipboard+=unnamedplus " システムクリップボードと共有
 filetype indent off
 filetype plugin indent off
 " シェルの設定
@@ -168,7 +168,6 @@ endif
 " ===========================================
 " キーマップ設定
 " ===========================================
-
 " インサートモードでの補完
 inoremap { {}<LEFT>
 inoremap ( ()<LEFT>
@@ -181,11 +180,13 @@ inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
 inoremap <C-s> ==========
 
-" ESC でモード切替（terminal）
+" ターミナル設定
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
+  nnoremap <leader>t :terminal<CR>
 else
   tnoremap <silent> <ESC><ESC> <C-w>N
+  nnoremap <leader>t :terminal ++curwin<CR>
 endif
 
 " モーション
@@ -194,6 +195,24 @@ noremap L $
 noremap K *zz
 noremap n nzz
 noremap N Nzz
+
+" バッファ移動
+nnoremap <C-k> :bprev<CR>
+nnoremap <C-j> :bnext<CR>
+
+" ウィンドウ移動
+nnoremap <C-l> <C-w>w
+nnoremap <C-h> <C-w>W
+
+" タブ移動
+nnoremap <M-h> :tabp<CR>
+nnoremap <M-l> :tabn<CR>
+nnoremap <leader>c :tabnew %<CR>
+nnoremap <leader>C :tabclose<CR>
+
+" その他remap
+nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+nnoremap U <C-r>
 
 " Leader キーを Space に
 noremap <Space> <nop>
@@ -209,25 +228,6 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 nnoremap <leader>i :! 
-if has('nvim')
-  nnoremap <leader>t :terminal<CR>
-else
-  nnoremap <leader>t :terminal ++curwin<CR>
-endif
-
-" バッファ移動
-nnoremap <C-k> :bprev<CR>
-nnoremap <C-j> :bnext<CR>
-
-" ウィンドウ移動
-nnoremap <C-l> <C-w>w
-nnoremap <C-h> <C-w>W
-
-" タブ移動
-nnoremap <M-h> :tabp<CR>
-nnoremap <M-l> :tabn<CR>
-nnoremap <leader>c :tabnew %<CR>
-nnoremap <leader>C :tabclose<CR>
 
 " fzf 用
 nnoremap <leader>f         :Files<CR>
@@ -244,13 +244,8 @@ nnoremap <leader><leader>l :BLines<CR>
 nnoremap <leader>m         :Marks<CR>
 nnoremap <leader><leader>m :BMarks<CR>
 
-" その他remap
-nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
-nnoremap U <C-r>
-"nnoremap <leader>r :reg<CR>
-
 " ===========================================
-" 表示・見た目設定
+" 表示設定
 " ===========================================
 set number                     " 行番号表示
 set showcmd                    " コマンド表示
@@ -260,10 +255,6 @@ set hlsearch                   " 検索結果ハイライト
 set incsearch                  " インクリメンタルサーチ
 set completeopt=menu,preview
 set guicursor=n-v-c-i:block    " カーソル形状
-
-" ===========================================
-" ファイルごと設定・オートコマンド
-" ===========================================
 
 " view 保存・復元（折り畳みなど）
 autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
@@ -275,15 +266,11 @@ if has('nvim')
   autocmd TermOpen * setlocal nonumber norelativenumber
 endif
 
-" ===========================================
-" カラー設定
-" ===========================================
-
 " カーソルライン制御
 function ChangeColorInsertEnter()
   set nocursorline
 endfunction
-function ChangeColorInsertLeave() 
+function ChangeColorInsertLeave()
   set cursorline
 endfunction
 autocmd InsertEnter * call ChangeColorInsertEnter()
@@ -330,7 +317,6 @@ endif
 " ===========================================
 " ファイルタイプ別設定など
 " ===========================================
-
 " lisp ファイルは lisp モード
 autocmd BufEnter *.lisp call LispSetting()
 function LispSetting()
