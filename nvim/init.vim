@@ -180,15 +180,6 @@ inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
 inoremap <C-s> ==========
 
-" ターミナル設定
-if has('nvim')
-  tnoremap <silent> <ESC> <C-\><C-n>
-  nnoremap <leader>t :terminal<CR>
-else
-  tnoremap <silent> <ESC><ESC> <C-w>N
-  nnoremap <leader>t :terminal ++curwin<CR>
-endif
-
 " モーション
 noremap H ^
 noremap L $
@@ -228,6 +219,15 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 nnoremap <leader>i :! 
+
+" ターミナル設定
+if has('nvim')
+  tnoremap <silent> <ESC> <C-\><C-n>
+  nnoremap <leader>t :terminal<CR>
+else
+  tnoremap <silent> <ESC><ESC> <C-w>N
+  nnoremap <leader>t :terminal ++curwin<CR>
+endif
 
 " fzf 用
 nnoremap <leader>f         :Files<CR>
