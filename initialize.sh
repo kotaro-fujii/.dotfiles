@@ -28,6 +28,16 @@ ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
 [ ! -d $HOME/.config ] && mkdir $HOME/.config
 dir_link $dotfiles_prefix/nvim $HOME/.config/nvim
 
+# nvim (windows) setting
+if [ -f /etc/wsl.conf ]; then
+  win_nvim=$windows_homedir/AppData/Local/nvim
+  [ ! -d $win_nvim ] && mkdir $win_nvim
+  cp $dotfiles_prefix/nvim/init.vim $win_nvim
+  win_nvim_conf=$windows_homedir/.config/nvim
+  [ ! -d $win_nvim_conf ] && mkdir $win_nvim_conf
+  cp $dotfiles_prefix/nvim/dein.toml $win_nvim_conf
+fi
+
 # .vim setting
 ln -sf $dotfiles_prefix/nvim/init.vim $HOME/.vimrc
 dir_link $dotfiles_prefix/vim $HOME/.vim
