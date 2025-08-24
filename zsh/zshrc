@@ -71,6 +71,9 @@ alias zz='source ~/.zshrc'    # zshrcを再読み込み
 alias lpath='export PATH=$PATH'
 
 # アプリケーション起動系
+function wpwd () {
+  pwd | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\/g'
+}
 function e() {
   realpath -P $1 | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\\\/g'  | xargs explorer.exe
 }
