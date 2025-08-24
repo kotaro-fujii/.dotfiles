@@ -69,6 +69,11 @@ else
   ln -s $dotfiles_prefix/wezterm/wezterm_linux.lua $wezterm_dir/wezterm.lua
 fi
 
+# powershell
+if [ -f /etc/wsl.conf ]; then
+  cp $dotfiles_prefix/pwsh/Microsoft.PowerShell_profile.ps1 $windows_homedir/Documents/PowerShell
+fi
+
 # other config settings
 ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
 ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
