@@ -332,7 +332,19 @@ autocmd BufEnter * if expand('%:e') !=# 'lisp' |
 " ファイルタイプによるインデント幅設定
 autocmd BufEnter * call IndentWidthSet()
 function IndentWidthSet()
-  let ft2 = ['md', 'markdown', 'vim', 'tex', 'plaintex', 'sh', 'bash', 'zsh', 'bib', 'typst']
+  let ft2 = [
+    \ 'markdown',
+    \ 'vim',
+    \ 'tex',
+    \ 'plaintex',
+    \ 'sh',
+    \ 'bash',
+    \ 'zsh',
+    \ 'bib',
+    \ 'typst',
+    \ 'html',
+    \ 'javascript',
+  \ ]
   if index(ft2, &filetype) >=0
     setlocal shiftwidth=2
   else
