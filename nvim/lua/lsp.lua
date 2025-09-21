@@ -1,7 +1,7 @@
 -- ========== settings ==========
 remap_options = { noremap = true, silent = true, buffer = bufnr }
-vim.keymap.set('n', 'K', vim.lsp.buf.definition, opts)
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+vim.keymap.set('n', 'K', vim.lsp.buf.definition, remap_options)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, remap_options)
 
 vim.diagnostic.config({
     virtual_text = {
@@ -17,6 +17,7 @@ local servers = {
     "pylsp",
     "rust_analyzer",
     "markdown_oxide",
+    "bashls",
 }
 
 for _, server in ipairs(servers) do

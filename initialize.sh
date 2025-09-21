@@ -156,5 +156,12 @@ rustup component add rust-analyzer
 cargo install --git 'https://github.com/feel-ix-343/markdown-oxide' markdown-oxide
 
 # shellcheck
-stack update
-stack install ShellCheck
+if ! type shellcheck; then
+  stack update
+  stack install ShellCheck
+fi
+
+# bash-language-server
+if [[ ! -L $dotfiles_prefix/node/bin/bash-language-server ]]; then
+  npm i -g bash-language-server
+fi
