@@ -135,7 +135,7 @@ miniforge_filename=$(basename $miniforge_url)
 # nodejs
 nodejs_version=22.19.0
 #node-v${nodejs_version}-linux-x64
-if [[ ! -d $dotfiles_prefix/node-v${nodejs_version}-linux-x64 ]]; then
+if [[ ! -d $dotfiles_prefix/node ]]; then
   wget -O - "https://nodejs.org/dist/v${nodejs_version}/node-v${nodejs_version}-linux-x64.tar.xz" \
     | tar -Jxf - -C $dotfiles_prefix
   mv $dotfiles_prefix/node-v${nodejs_version}-linux-x64 $dotfiles_prefix/node
@@ -154,3 +154,7 @@ rustup component add rust-analyzer
 
 # markdown-oxide
 cargo install --git 'https://github.com/feel-ix-343/markdown-oxide' markdown-oxide
+
+# shellcheck
+stack update
+stack install ShellCheck
