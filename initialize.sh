@@ -132,3 +132,6 @@ if !(type pylsp); then
   mamba run -n base \
     mamba install mamba install python-lsp-server
 fi
+
+# rust-analyzer
+rustup component add rust-analyzer
