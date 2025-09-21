@@ -125,3 +125,10 @@ miniforge_filename=$(basename $miniforge_url)
   chmod +x $miniforge_filename && \
   ./$miniforge_filename -p $dotfiles_prefix/miniforge3
 
+# ========== LSP ==========
+
+# pylsp
+if !(type pylsp); then
+  mamba run -n base \
+    mamba install mamba install python-lsp-server
+fi
