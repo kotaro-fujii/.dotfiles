@@ -20,7 +20,11 @@ repo = 'cocopon/iceberg.vim'
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
 
+# languages
 [[plugins]]
 repo = 'kaarmu/typst.vim.git'
 [[plugins]]
 repo = 'https://github.com/lervag/vimtex.git'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'

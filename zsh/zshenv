@@ -13,6 +13,8 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
+export PATH=$PATH:$MAMBA_ROOT_PREFIX/bin
+
 # load local setting
 __local_zshenv=~/.zshenv.local
 [ -e $__local_zshenv ] && source $__local_zshenv
