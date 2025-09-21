@@ -87,6 +87,13 @@ if [[ ! -d $HOME/.cargo ]]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
+# stack (haskell)
+if [[ ! -f $dotfiles_prefix/stack_installation.sh ]]; then
+  wget "https://get.haskellstack.org/" -O $dotfiles_prefix/stack_installation.sh
+  chmod +x $dotfiles_prefix/stack_installation.sh
+  $dotfiles_prefix/stack_installation.sh -d $dotfiles_prefix/stack
+fi
+
 # bat
 if [[ ! -d $dotfiles_prefix/bat ]]; then
     bat_tar_gz=$dotfiles_prefix/bat-v0.25.0-x86_64-unknown-linux-gnu.tar.gz
@@ -125,6 +132,7 @@ miniforge_filename=$(basename $miniforge_url)
   chmod +x $miniforge_filename && \
   ./$miniforge_filename -p $dotfiles_prefix/miniforge3
 
+# nodejs
 nodejs_version=22.19.0
 #node-v${nodejs_version}-linux-x64
 if [[ ! -d $dotfiles_prefix/node-v${nodejs_version}-linux-x64 ]]; then
