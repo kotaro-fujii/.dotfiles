@@ -127,11 +127,14 @@ miniforge_filename=$(basename $miniforge_url)
 
 # ========== LSP ==========
 
-# pylsp
-if !(type pylsp); then
+ pylsp
+if ! type pylsp; then
   mamba run -n base \
     mamba install mamba install python-lsp-server
 fi
 
 # rust-analyzer
 rustup component add rust-analyzer
+
+# markdown-oxide
+cargo install --git 'https://github.com/feel-ix-343/markdown-oxide' markdown-oxide

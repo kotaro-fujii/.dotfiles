@@ -16,6 +16,7 @@ vim.diagnostic.config({
 local servers = {
     "pylsp",
     "rust_analyzer",
+    "markdown_oxide",
 }
 
 for _, server in ipairs(servers) do
