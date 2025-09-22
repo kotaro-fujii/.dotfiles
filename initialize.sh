@@ -22,7 +22,8 @@ ln -sf $dotfiles_prefix/zsh/zshenv $HOME/.zshenv
 dir_link $dotfiles_prefix/zsh $HOME/.zsh
 
 # bash initialize
-ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.bashrc
+ln -sf $dotfiles_prefix/bash/bashrc $HOME/.bashrc
+dir_link $dotfiles_prefix/bash $HOME/.bash
 
 # .config/nvim setting
 [ ! -d $HOME/.config ] && mkdir $HOME/.config

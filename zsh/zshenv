@@ -1,7 +1,4 @@
-export PATH=$HOME/.bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-# todo: fix dotfiles path
-export PATH=$HOME/.dotfiles/node/bin:$PATH
+. $HOME/.zsh/shellenv
 
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba shell init' !!
@@ -17,8 +14,3 @@ unset __mamba_setup
 # <<< mamba initialize <<<
 
 export PATH=$PATH:$MAMBA_ROOT_PREFIX/bin
-
-# load local setting
-__local_zshenv=~/.zshenv.local
-[ -e $__local_zshenv ] && source $__local_zshenv
-unset __local_zshenv
