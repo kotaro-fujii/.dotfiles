@@ -166,3 +166,8 @@ fi
 if [[ ! -L $dotfiles_prefix/node/bin/bash-language-server ]]; then
   npm i -g bash-language-server
 fi
+
+# vim-language-server
+if [[ ! -L $dotfiles_prefix/node/bin/vim-language-server ]]; then
+  npm i -g vim-language-server
+fi

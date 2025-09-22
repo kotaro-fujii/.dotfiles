@@ -18,6 +18,7 @@ local servers = {
     "rust_analyzer",
     "markdown_oxide",
     "bashls",
+    "vimls",
 }
 
 for _, server in ipairs(servers) do
