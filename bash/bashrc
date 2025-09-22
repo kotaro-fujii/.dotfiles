@@ -15,7 +15,7 @@ if [[ $- == *i* ]]; then
   bind '"\C-w": unix-filename-rubout'
 
   # aliasとか読み込み
-  . $HOME/.bash/shellrc
+  . "$HOME/.bash/shellrc"
 
   # load local setting
   __local_bashrc=~/.bashrc.local
@@ -29,7 +29,7 @@ fi
 # environmental
 # ==========
 
-. $HOME/.bash/shellenv
+. "$HOME/.bash/shellenv"
 
 # ========== initialize applications ==========
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

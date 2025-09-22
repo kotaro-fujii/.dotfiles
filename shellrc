@@ -31,7 +31,7 @@ function wpwd () {
   pwd | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\/g'
 }
 function e() {
-  realpath -P $1 | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\\\/g'  | xargs explorer.exe
+  realpath -P "$1" | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\\\/g'  | xargs explorer.exe
 }
 alias py='python'
 alias lltx='lualatex --shell-escape --halt-on-error'
@@ -44,11 +44,31 @@ alias ty='typst'
 alias tyw='typst watch'
 alias tyc='typst compile'
 function tywin () {
-  powershell.exe "typst w $@"
+  powershell.exe "typst w $*"
 }
-alias caf="conda activate \$(conda env list | tr -d \* | tail -n +4 | head -n -1 | awk '{print \$1}' | fzf)"
+
+# aliases and function for mamba and conda
+function caf () {
+  target_env=$(
+    conda env list \
+      | tr -d \* | tail -n +4 | head -n -1 \
+      | awk '{ print $1 }' \
+      | fzf
+  )
+  conda activate "$target_env" \
+    && echo "$target_env"
+}
 alias cac="conda activate"
 alias cif="conda info -e"
-alias maf="mamba activate \$(mamba env list | tr -d \* | tail -n +3 | awk '{print \$1}' | fzf)"
+function maf () {
+  target_env=$(
+    mamba env list \
+      | tr -d \* | tail -n +3 \
+      | awk '{ print $1 }' \
+      | fzf
+  )
+  mamba activate "$target_env" \
+    && echo "$target_env"
+}
 alias mac="mamba activate"
 alias mif="mamba info -e"
