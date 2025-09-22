@@ -4,9 +4,9 @@ vim.keymap.set('n', 'K', vim.lsp.buf.definition, remap_options)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, remap_options)
 
 vim.diagnostic.config({
-    virtual_text = {
-        prefix = "++++",
-        spacing = 8,
+    virtual_text = false,
+    virtual_lines = {
+        only_current_line = false,
     },
     signs = false,
     underline = true,
