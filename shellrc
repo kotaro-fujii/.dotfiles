@@ -1,0 +1,54 @@
+# ========== aliases ==========
+
+# cd系
+alias c='cd'
+alias b='cd ../'
+
+# ls系
+# 大文字コマンドは隠しを表示
+alias l='ls -F'   # パーミッションやファイル形式がみやすい
+alias ll='ls -l'  # 詳細表示＋隠しファイル
+alias lr='ls -R'  # 再帰的に表示
+
+alias LS='ls -A'
+alias L='ls -AF'
+alias LL='ls -Al'
+alias LR='ls -AR'
+
+# その他基本系
+alias wl='wc -l'
+alias rl='readlink'
+alias rp='realpath'
+alias G='grep'
+alias GE='grep -E'
+alias zz='source ~/.zshrc'    # zshrcを再読み込み
+alias lpath='export PATH=$PATH'
+alias duh='du -h'
+alias soh='sort -h'
+
+# アプリケーション起動系
+function wpwd () {
+  pwd | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\/g'
+}
+function e() {
+  realpath -P $1 | sed -E 's|^/mnt/([a-z])|\U\1:|' | sed 's/\//\\\\/g'  | xargs explorer.exe
+}
+alias py='python'
+alias lltx='lualatex --shell-escape --halt-on-error'
+alias bat='bat -pp'
+alias nv='nvim'
+alias tm='tmux'
+alias em='emacs -nw'
+alias g='git'
+alias ty='typst'
+alias tyw='typst watch'
+alias tyc='typst compile'
+function tywin () {
+  powershell.exe "typst w $@"
+}
+alias caf="conda activate \$(conda env list | tr -d \* | tail -n +4 | head -n -1 | awk '{print \$1}' | fzf)"
+alias cac="conda activate"
+alias cif="conda info -e"
+alias maf="mamba activate \$(mamba env list | tr -d \* | tail -n +3 | awk '{print \$1}' | fzf)"
+alias mac="mamba activate"
+alias mif="mamba info -e"

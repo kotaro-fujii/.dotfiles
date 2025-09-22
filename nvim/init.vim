@@ -352,6 +352,9 @@ function IndentWidthSet()
   endif
 endfunction
 
+" 特定ファイルのfiletype設定
+autocmd BufEnter */bashenv,*/shellrc,*/shellenv,~/.shellenv.local set filetype=bash
+
 " ===========================================
 " ローカル設定の読み込み
 " ===========================================

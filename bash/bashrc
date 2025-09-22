@@ -1,0 +1,48 @@
+# このスクリプトは基本的に `zshenv` 的に扱う。
+# `zshrc` 的なインタラクティブシェル限定の設定は以下に記述。
+
+# ==========
+# only interactive
+# ==========
+
+if [[ $- == *i* ]]; then
+  # bash用のプロンプト設定
+  PS1='\[\e[1;36m\]@\h \[\e[1;32m\]\W \[\e[1;31m\]\$\[\e[0m\] '
+  alias ls='ls --color=tty'    # lsに色をつける
+
+  # Ctrl+Wの挙動を変更してパスの途中でも消しやすく
+  stty werase undef
+  bind '"\C-w": unix-filename-rubout'
+
+  # aliasとか読み込み
+  . $HOME/.bash/shellrc
+
+  # load local setting
+  __local_bashrc=~/.bashrc.local
+  [ -e $__local_bashrc ] && source $__local_bashrc
+  unset __local_bashrc
+
+fi
+
+
+# ==========
+# environmental
+# ==========
+
+. $HOME/.bash/shellenv
+
+# ========== initialize applications ==========
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba shell init' !!
+export MAMBA_EXE="$HOME/.dotfiles/miniforge3/bin/mamba";
+export MAMBA_ROOT_PREFIX="$HOME/.dotfiles/miniforge3";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
