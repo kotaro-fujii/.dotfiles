@@ -183,7 +183,7 @@ inoremap <C-s> ==========
 " モーション
 noremap H ^
 noremap L $
-noremap K *zz
+" noremap K *zz
 noremap n nzz
 noremap N Nzz
 
@@ -360,4 +360,7 @@ if !filereadable(expand(g:nvim_prefix . "local.vim"))
   silent! call system('touch ' . expand(g:nvim_prefix . "local.vim"))
 endif
 execute "source " . g:nvim_prefix . "local.vim"
+
+" ========== lsp settings ==========
+lua require('lsp')
 
