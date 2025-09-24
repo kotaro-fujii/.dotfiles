@@ -7,3 +7,5 @@ export PATH=$HOME/.dotfiles/bin:$PATH
 __local_shellenv=~/.shellenv.local
 [ -e $__local_shellenv ] && source $__local_shellenv
 unset __local_shellenv
+
+. "$HOME/.cargo/env"
