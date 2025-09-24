@@ -354,6 +354,7 @@ endfunction
 
 " 特定ファイルのfiletype設定
 autocmd BufEnter */bashenv,*/shellrc,*/shellenv,~/.shellenv.local set filetype=bash
+autocmd BufEnter */dotfiles/gitconfig,~/.profile.gitconfig set filetype=gitconfig
 
 " ===========================================
 " ローカル設定の読み込み
