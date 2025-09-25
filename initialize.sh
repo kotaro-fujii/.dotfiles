@@ -88,6 +88,14 @@ ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
 # initialize applications
 # ====================
 
+# nvim
+if [[ ! -d "$dotfiles_prefix/nvim-linux-x86_64" ]]; then
+wget -O - "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.tar.gz" \
+  | tar -zxf - -C $dotfiles_prefix
+  #wget -O - "https://nodejs.org/dist/v${nodejs_version}/node-v${nodejs_version}-linux-x64.tar.xz" \
+  #  | tar -Jxf - -C $dotfiles_prefix
+fi
+
 # cargo
 if [[ ! -d $HOME/.cargo ]]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

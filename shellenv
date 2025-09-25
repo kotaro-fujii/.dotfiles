@@ -1,8 +1,10 @@
-export PATH=$HOME/.bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 # todo: fix dotfiles path
 export PATH=$HOME/.dotfiles/node/bin:$PATH
 export PATH=$HOME/.dotfiles/bin:$PATH
+export PATH=$HOME/.dotfiles/nvim-linux-x86_64/bin:$PATH
+
+export PATH=$HOME/.bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 __local_shellenv=~/.shellenv.local
 [ -e $__local_shellenv ] && source $__local_shellenv
