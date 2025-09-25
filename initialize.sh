@@ -16,6 +16,11 @@ windows_appdata=$windows_homedir/AppData/Roaming
 
 # ====================
 
+# oh-my-zsh initialize
+if [ ! -d $HOME/.oh-my-zsh ] && { ! type "omz" }; then
+  sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+fi
+
 # zsh initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
 ln -sf $dotfiles_prefix/zsh/zshenv $HOME/.zshenv
