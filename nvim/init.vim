@@ -1,7 +1,4 @@
-" ===========================================
-" プラグイン設定：dein.vim
-" ===========================================
-
+" ========== plugin setup: dein.vim  ==========
 if has('nvim')
   " dein.vim を置くディレクトリ設定
   let s:dein_dir = expand('~/.config/nvim/dein')
@@ -46,6 +43,7 @@ if has('nvim')
   " fzf を runtimepath に追加
   set rtp+=$HOME/.dotfiles/fzf
 
+" ========== plugin setup: vim-plug  ==========
 else
   " vim-plugが無ければautoloadにダウンロード
   let s:vimplug_file = expand('~/.vim/autoload/plug.vim')
@@ -65,10 +63,8 @@ else
   set rtp+=$HOME/.dotfiles/fzf
 endif
 
-" ===========================================
-" 自作関数：カッコ補完やインデント制御
-" ===========================================
 
+" ========== functions ==========
 " 開きカッコと閉じカッコの対応表
 let g:open_brackets = ["(", "{", "[", "\"", "\'"]
 let g:close_brackets = [")", "}", "]", "\"", "\'"]
@@ -138,18 +134,17 @@ function! BracketBackspace()
   endif
 endfunction
 
-" ===========================================
-" エディタ基本設定
-" ===========================================
-set expandtab              " タブをスペースに
-set autoindent             " 自動インデント
-set smarttab               " スマートタブ
-set fenc=utf-8             " 文字コード
-set hidden                 " 編集中でも他のバッファを開ける
-set wildmode=list,full     " コマンド補完モード
-set mouse=                 " マウス無効
-set timeoutlen=500         " マッピング待ち時間
-set clipboard+=unnamedplus " システムクリップボードと共有
+
+" ========== basic settings ==========
+set expandtab
+set autoindent
+set smarttab
+set fenc=utf-8
+set hidden
+set wildmode=list,full
+set mouse=
+set timeoutlen=500
+set clipboard+=unnamedplus
 filetype indent off
 filetype plugin indent off
 " シェルの設定
@@ -165,10 +160,13 @@ else
   echo "None of shells are executable."
 endif
 
-" ===========================================
-" キーマップ設定
-" ===========================================
-" インサートモードでの補完
+
+" ========== keymaps ==========
+
+noremap <Space> <nop>
+let mapleader = "\<Space>"
+
+" completions in insert mode
 inoremap { {}<LEFT>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
@@ -180,47 +178,39 @@ inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
 inoremap <C-s> ==========
 
-" モーション
+" motions
 noremap H ^
 noremap L $
 " noremap K *zz
 noremap n nzz
 noremap N Nzz
 
-" バッファ移動
+" buffers, windows, tabs
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
+nnoremap <leader>d :bnext \| bdelete #<CR>
+nnoremap <leader>e :e 
+nnoremap <leader>w :w<CR>
 
-" ウィンドウ移動
 nnoremap <C-l> <C-w>w
 nnoremap <C-h> <C-w>W
+nnoremap <leader>h :split<CR>
+nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>q :q<CR>
 
-" タブ移動
 nnoremap <M-h> :tabp<CR>
 nnoremap <M-l> :tabn<CR>
 nnoremap <leader>c :tabnew %<CR>
 nnoremap <leader>C :tabclose<CR>
 
-" その他remap
+" other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
-nnoremap U <C-r>
-
-" Leader キーを Space に
-noremap <Space> <nop>
-let mapleader = "\<Space>"
-
-" よく使うコマンド
-nnoremap <leader>h :split<CR>
-nnoremap <leader>v :vsplit<CR>
-nnoremap <leader>d :bnext \| bdelete #<CR>
-nnoremap <leader>e :e 
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
 nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
-nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
+nnoremap U <C-r>
 nnoremap <leader>i :! 
+nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 
-" ターミナル設定
+" terminal settings
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
   nnoremap <leader>t :terminal<CR>
@@ -244,17 +234,16 @@ nnoremap <leader><leader>l :BLines<CR>
 nnoremap <leader>m         :Marks<CR>
 nnoremap <leader><leader>m :BMarks<CR>
 
-" ===========================================
-" 表示設定
-" ===========================================
-set number                     " 行番号表示
-set showcmd                    " コマンド表示
-set listchars=tab:>-,trail:-   " 不可視文字表示
+
+" ========== representation ==========
+set number
+set showcmd
+set listchars=tab:>-,trail:-
 set list
-set hlsearch                   " 検索結果ハイライト
-set incsearch                  " インクリメンタルサーチ
+set hlsearch
+set incsearch
 set completeopt=menu,preview
-set guicursor=n-v-c-i:block    " カーソル形状
+set guicursor=n-v-c-i:block
 
 " view 保存・復元（折り畳みなど）
 autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
@@ -266,7 +255,7 @@ if has('nvim')
   autocmd TermOpen * setlocal nonumber norelativenumber
 endif
 
-" カーソルライン制御
+" cursorline representation
 function ChangeColorInsertEnter()
   set nocursorline
 endfunction
@@ -277,13 +266,13 @@ autocmd InsertEnter * call ChangeColorInsertEnter()
 autocmd InsertLeave * call ChangeColorInsertLeave()
 set cursorline
 
-" 背景切り替え
+" toggle background
 function ToggleBackgroundColor()
   let g:none_background_color = 1 - g:none_background_color
   execute 'colorscheme ' . g:colors_name
 endfunction
 
-" カラースキームの上書き
+" overwrite color scheme
 let g:none_background_color = 1
 function OverWriteColor()
   let l:listchars_guifg = synIDattr(synIDtrans(hlID('WarningMsg')), 'fg', 'gui')
@@ -314,22 +303,21 @@ else
   colorscheme iceberg
 endif
 
-" ===========================================
-" ファイルタイプ別設定など
-" ===========================================
-" lisp ファイルは lisp モード
+
+" ========== filetype settings ==========
+" lisp mode
 autocmd BufEnter *.lisp call LispSetting()
 function LispSetting()
   setlocal lisp
   inoremap <buffer> <silent> <expr> <BS> BracketBackspace()
 endfunction
-" 他ファイルは自作関数を利用
+" set IndentBrace function
 autocmd BufEnter * if expand('%:e') !=# 'lisp' |
   \ inoremap <buffer> <silent> <expr> <BS> BracketBackspace() |
   \ inoremap <buffer> <silent> <expr> <CR> IndentBraces() |
   \ endif
 
-" ファイルタイプによるインデント幅設定
+" set indent width in reference to filetype
 autocmd BufEnter * call IndentWidthSet()
 function IndentWidthSet()
   let ft2 = [
@@ -352,13 +340,12 @@ function IndentWidthSet()
   endif
 endfunction
 
-" 特定ファイルのfiletype設定
+" set filetype of specific files
 autocmd BufEnter */bashenv,*/shellrc,*/shellenv,~/.shellenv.local set filetype=bash
 autocmd BufEnter */dotfiles/gitconfig,~/.profile.gitconfig set filetype=gitconfig
 
-" ===========================================
-" ローカル設定の読み込み
-" ===========================================
+
+" ========== load local settings ==========
 let g:nvim_prefix = "~/.config/nvim/"
 if !filereadable(expand(g:nvim_prefix . "local.vim"))
   silent! call system('touch ' . expand(g:nvim_prefix . "local.vim"))
