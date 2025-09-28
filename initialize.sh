@@ -16,6 +16,11 @@ windows_appdata=$windows_homedir/AppData/Roaming
 
 # ====================
 
+# oh-my-zsh initialize
+if [ ! -d $HOME/.oh-my-zsh ] && { ! type "omz" }; then
+  sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+fi
+
 # zsh initialize
 ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
 ln -sf $dotfiles_prefix/zsh/zshenv $HOME/.zshenv
@@ -82,6 +87,14 @@ ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
 # ====================
 # initialize applications
 # ====================
+
+# nvim
+if [[ ! -d "$dotfiles_prefix/nvim-linux-x86_64" ]]; then
+wget -O - "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.tar.gz" \
+  | tar -zxf - -C $dotfiles_prefix
+  #wget -O - "https://nodejs.org/dist/v${nodejs_version}/node-v${nodejs_version}-linux-x64.tar.xz" \
+  #  | tar -Jxf - -C $dotfiles_prefix
+fi
 
 # cargo
 if [[ ! -d $HOME/.cargo ]]; then
