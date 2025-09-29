@@ -19,6 +19,7 @@ local servers = {
     "markdown_oxide",
     "bashls",
     "vimls",
+    "tinymist",
 }
 
 for _, server in ipairs(servers) do

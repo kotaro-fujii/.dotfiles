@@ -169,6 +169,9 @@ rustup component add rust-analyzer
 # markdown-oxide
 cargo install --git 'https://github.com/feel-ix-343/markdown-oxide' markdown-oxide
 
+# tinymist
+cargo install --git https://github.com/Myriad-Dreamin/tinymist --locked tinymist-cli
+
 # shellcheck
 if ! type shellcheck; then
   stack update
