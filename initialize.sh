@@ -111,21 +111,14 @@ if [[ ! -d $HOME/.cargo ]]; then
 fi
 
 # stack (haskell)
-if [[ ! -f $dotfiles_prefix/stack_installation.sh ]]; then
+if [[ ! -f $dotfiles_prefix/stack/stack ]]; then
   wget "https://get.haskellstack.org/" -O $dotfiles_prefix/stack_installation.sh
   chmod +x $dotfiles_prefix/stack_installation.sh
   $dotfiles_prefix/stack_installation.sh -d $dotfiles_prefix/stack
 fi
 
 # bat
-if [[ ! -d $dotfiles_prefix/bat ]]; then
-    bat_tar_gz=$dotfiles_prefix/bat-v0.25.0-x86_64-unknown-linux-gnu.tar.gz
-    wget https://github.com/sharkdp/bat/releases/download/v0.25.0/bat-v0.25.0-x86_64-unknown-linux-gnu.tar.gz \
-        -O $bat_tar_gz
-    tar -zxvf $bat_tar_gz && \
-        rm $bat_tar_gz && \
-        mv $(dirname $bat_tar_gz)/$(basename $bat_tar_gz .tar.gz) $dotfiles_prefix/bat
-fi
+cargo install --locked bat
 
 # fzf
 if [[ ! -d $dotfiles_prefix/fzf ]]; then
