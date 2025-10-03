@@ -1,11 +1,12 @@
 /nvim/dein
 /nvim/local.vim
-/fzf
-/bat
-/org.d
+
 /vim/autoload
 /vim/plugged
 /vim/view
+
+/fzf
+/bat
 /Miniforge3-*-*.sh
 /miniforge3
 /the_silver_searcher
