@@ -134,14 +134,6 @@ if [[ ! -d $dotfiles_prefix/fzf ]]; then
 fi
 dir_link $dotfiles_prefix/fzf $HOME/.fzf
 
-# the silver searcher
-# install requirements:
-#   sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
-if [[ ! -d $dotfiles_prefix/the_silver_searcher ]]; then
-  git clone "https://github.com/ggreer/the_silver_searcher.git" $dotfiles_prefix/the_silver_searcher \
-    && $dotfiles_prefix/the_silver_searcher/build.sh
-fi
-
 # ripgrep
 if [[ ! -f $HOME/.cargo/bin/ripgrep ]]; then
   cargo install ripgrep
