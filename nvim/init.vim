@@ -353,5 +353,7 @@ endif
 execute "source " . g:nvim_prefix . "local.vim"
 
 " ========== lsp settings ==========
-lua require('lsp')
+if has('nvim')
+  lua require('lsp')
+endif
 
