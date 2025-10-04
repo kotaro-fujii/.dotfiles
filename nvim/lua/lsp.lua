@@ -57,3 +57,4 @@ vim.diagnostic.config({
     signs = false,
     underline = true,
 })
+enable_servers()
