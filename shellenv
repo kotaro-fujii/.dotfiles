@@ -1,7 +1,8 @@
 # todo: fix dotfiles path
 export PATH=$HOME/.dotfiles/node/bin:$PATH
 export PATH=$HOME/.dotfiles/bin:$PATH
-export PATH=$HOME/.dotfiles/nvim-linux-x86_64/bin:$PATH
+# export PATH=$HOME/.dotfiles/nvim-linux-x86_64/bin:$PATH
+export PATH=$HOME/.dotfiles/neovim-install/bin:$PATH
 
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
