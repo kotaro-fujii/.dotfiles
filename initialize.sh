@@ -91,19 +91,18 @@ ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
 # nvim
 # check dependency
 # todo: update evaluation
+__neovim_version="v0.11.4"
 if [[ ! -d "$dotfiles_prefix/neovim" ]]; then
   git clone "https://github.com/neovim/neovim.git" $dotfiles_prefix/neovim
   mkdir $dotfiles_prefix/neovim-install
   (
     cd $dotfiles_prefix/neovim \
-      && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$dotfiles_prefix/neovim-install \
+      && git checkout "$__neovim_version" \
+      && make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=$dotfiles_prefix/neovim-install \
       && make install
   )
 fi
-if [[ ! -d "$dotfiles_prefix/nvim-linux-x86_64" ]]; then
-wget -O - "https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-x86_64.tar.gz" \
-  | tar -zxf - -C $dotfiles_prefix
-fi
+unset __neovim_version
 
 # cargo
 if [[ ! -d $HOME/.cargo ]]; then
