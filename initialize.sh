@@ -154,10 +154,7 @@ fi
 # ========== LSP ==========
 
 # pylsp
-if ! type pylsp; then
-  mamba run -n base \
-    mamba install python-lsp-server
-fi
+uv tool install python-lsp-server
 
 # rust-analyzer
 rustup component add rust-analyzer
