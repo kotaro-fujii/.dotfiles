@@ -139,6 +139,9 @@ miniforge_filename=$(basename $miniforge_url)
   chmod +x $miniforge_filename && \
   ./$miniforge_filename -p $dotfiles_prefix/miniforge3
 
+# uv
+cargo install --git https://github.com/astral-sh/uv uv
+
 # nodejs
 nodejs_version=22.19.0
 #node-v${nodejs_version}-linux-x64
