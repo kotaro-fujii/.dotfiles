@@ -1,3 +1,1 @@
 . $HOME/.zsh/shellenv
-
-export PATH=$PATH:$HOME/.dotfiles/miniforge3/bin
