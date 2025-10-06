@@ -22,6 +22,20 @@ if [[ $- == *i* ]]; then
   [ -e $__local_bashrc ] && source $__local_bashrc
   unset __local_bashrc
 
+  # ========== mamba initialization (copy this to `~/.bashrc.local) ==========
+  # # >>> mamba initialize >>>
+  # # !! Contents within this block are managed by 'mamba shell init' !!
+  # export MAMBA_EXE="$HOME/.dotfiles/miniforge3/bin/mamba";
+  # export MAMBA_ROOT_PREFIX="$HOME/.dotfiles/miniforge3";
+  # __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+  # if [ $? -eq 0 ]; then
+  #     eval "$__mamba_setup"
+  # else
+  #     alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+  # fi
+  # unset __mamba_setup
+  # # <<< mamba initialize <<<
+
 fi
 
 
@@ -33,16 +47,3 @@ fi
 
 # ========== initialize applications ==========
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE="$HOME/.dotfiles/miniforge3/bin/mamba";
-export MAMBA_ROOT_PREFIX="$HOME/.dotfiles/miniforge3";
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"  # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
