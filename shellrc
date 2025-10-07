@@ -72,3 +72,20 @@ function maf () {
 }
 alias mac="mamba activate"
 alias mif="mamba info -e"
+
+# aliases and function for uv
+vct () {
+  if [ -n "$1" ]; then
+    __target_dir=$(realpath "$1")
+  else
+    __target_dir=$(realpath .)
+  fi
+  __activate_script=$__target_dir/.venv/bin/activate
+  if [ -d "$__target_dir" ]; then
+    . "$__activate_script"
+  else
+    echo "Cannot access to \"$__activate_script\"." >&1
+  fi
+  unset __target_dir
+}
+alias dct='deactivate'
