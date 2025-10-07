@@ -29,7 +29,7 @@ end
 -- enable servers
 local function enable_servers()
     local servers = {
-        "pylsp",
+        "pyright",
         "rust_analyzer",
         "markdown_oxide",
         "bashls",

@@ -153,8 +153,8 @@ fi
 
 # ========== LSP ==========
 
-# pylsp
-uv tool install python-lsp-server
+# pyright
+uv tool install pyright
 
 # rust-analyzer
 rustup component add rust-analyzer
