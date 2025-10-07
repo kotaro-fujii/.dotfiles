@@ -25,6 +25,8 @@ alias zz='source ~/.zshrc'    # zshrcを再読み込み
 alias lpath='export PATH=$PATH'
 alias duh='du -h'
 alias soh='sort -h'
+alias W='which'
+alias T='type'
 
 # アプリケーション起動系
 function wpwd () {
