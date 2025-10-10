@@ -70,6 +70,7 @@ setln () {
   ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
   ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
 }
+setln
 
 # ========== install applications ==========
 
