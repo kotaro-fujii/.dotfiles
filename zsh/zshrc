@@ -21,6 +21,8 @@ __local_zshrc=~/.zshrc.local
 [ -e $__local_zshrc ] && source $__local_zshrc
 unset __local_zshrc
 
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
 # ========== mamba initialization (copy this to `~/.zshrc.local`) ==========
 # if { alias | grep "^mamba=" > /dev/null 2>&1 }; then
 #   unalias mamba

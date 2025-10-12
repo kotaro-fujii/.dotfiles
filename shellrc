@@ -92,8 +92,4 @@ vct () {
 }
 alias dct='deactivate'
 
-lscolor=$(cat << EOS
-OTHER_WRITABLE 01;04;34 # dir that is other-writable (o+w) and not sticky
-EOS
-)
-eval $(dircolors -b <(echo "$lscolor"))
+export LS_COLORS="ow=01;04;34:${LS_COLORS}:ow=01;04;34"
