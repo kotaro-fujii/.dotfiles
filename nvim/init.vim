@@ -332,6 +332,7 @@ function IndentWidthSet()
     \ 'typst',
     \ 'html',
     \ 'javascript',
+    \ 'htmldjango',
   \ ]
   if index(ft2, &filetype) >=0
     setlocal shiftwidth=2
