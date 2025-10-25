@@ -37,7 +37,7 @@ function e() {
 }
 alias py='python'
 alias lltx='lualatex --shell-escape --halt-on-error'
-alias bat='bat -pp'
+alias bat='bat -pp --theme ansi'
 alias nv='nvim'
 alias tm='tmux'
 alias em='emacs -nw'
