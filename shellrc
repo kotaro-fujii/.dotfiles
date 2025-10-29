@@ -49,6 +49,10 @@ alias tyc='typst compile'
 function tywin () {
   powershell.exe "typst w $*"
 }
+cmb () {
+  command_realpath=$(which "$1")
+  bat "$command_realpath"
+}
 
 # aliases and function for mamba and conda
 function caf () {
