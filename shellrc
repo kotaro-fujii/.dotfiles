@@ -57,6 +57,10 @@ cn () {
     echo "There are not matched directory." >&2
   fi
 }
+cmb () {
+  command_realpath=$(which "$1")
+  bat "$command_realpath"
+}
 
 # aliases and function for mamba and conda
 function caf () {
