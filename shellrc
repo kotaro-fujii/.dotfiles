@@ -50,7 +50,9 @@ function tywin () {
   powershell.exe "typst w $*"
 }
 cn () {
-  lastline=$(find . -maxdepth 1 -a -type d | grep -xE '(./)?[0-9_]+/?' | tail -n 1)
+  __target_dir=$1
+  lastline=$(find "${__target_dir:-.}" -maxdepth 1 -a -type d | sort | grep -E '/[0-9_]+/?$' | tail -n 1)
+  unset __target_dir
   if [ -n "$lastline" ]; then
     cd "$lastline" || echo "Failed to enter \"$lastline\"" >&2
   else
