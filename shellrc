@@ -28,6 +28,16 @@ alias duh='du -h'
 alias soh='sort -h'
 alias W='which'
 alias T='type'
+cn () {
+  __target_dir=$1
+  lastline=$(find "${__target_dir:-.}" -maxdepth 1 -a -type d | sort | grep -E '/[0-9_]+/?$' | tail -n 1)
+  unset __target_dir
+  if [ -n "$lastline" ]; then
+    cd "$lastline" || echo "Failed to enter \"$lastline\"" >&2
+  else
+    echo "There are not matched directory." >&2
+  fi
+}
 
 # アプリケーション起動系
 function wpwd () {
@@ -49,16 +59,6 @@ alias tyw='typst watch'
 alias tyc='typst compile'
 function tywin () {
   powershell.exe "typst w $*"
-}
-cn () {
-  __target_dir=$1
-  lastline=$(find "${__target_dir:-.}" -maxdepth 1 -a -type d | sort | grep -E '/[0-9_]+/?$' | tail -n 1)
-  unset __target_dir
-  if [ -n "$lastline" ]; then
-    cd "$lastline" || echo "Failed to enter \"$lastline\"" >&2
-  else
-    echo "There are not matched directory." >&2
-  fi
 }
 cmb () {
   command_realpath=$(which "$1")
