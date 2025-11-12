@@ -69,6 +69,8 @@ setln () {
   # other configs
   ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
   ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
+  # jj
+  dir_link $dotfiles_prefix/jj $HOME/.config/jj
 }
 setln
 
