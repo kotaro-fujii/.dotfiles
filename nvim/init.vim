@@ -176,6 +176,7 @@ inoremap '' '
 inoremap "" "
 inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
+inoremap <>! <!--  --><LEFT><LEFT><LEFT><LEFT>
 inoremap <C-s> ==========
 
 " motions
