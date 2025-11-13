@@ -64,6 +64,19 @@ config.background = {
 return config
 ```
 
+# jujutsu
+バージョン管理システム[`jujutsu`](https://jj-vcs.github.io/jj/latest/)の設定とか
+`$HOME/.config/jj/config.toml`はこのリポジトリでトラッキングされる。
+`$HOME/.config/jj/conf.d/*.toml`が追加のコンフィグで、トラッキングしない。
+ユーザ固有の設定とかは`$HOME/.config/jj/conf.d/user.toml`に書いておくと良い。
+例:
+```toml
+[user]
+name = "kfujii"
+email = "fujii.kotaro.l7@elms.hokudai.ac.jp"
+```
+
+
 ## font installation
 `alacritty`, `wezterm` といったターミナルエミュレータのフォントを変更する際、
 新たにインストールする必要がある場合、以下のような操作でインストールできます。
