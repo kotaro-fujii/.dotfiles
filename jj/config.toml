@@ -3,3 +3,4 @@ paginate = "never"
 
 [aliases]
 df = ["diff"]
+l = ["log"]
