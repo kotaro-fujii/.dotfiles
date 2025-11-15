@@ -144,6 +144,10 @@ install_uv () {
   cargo install --git https://github.com/astral-sh/uv uv
 }
 
+install_jj () {
+  cargo install --locked --bin jj jj-cli
+}
+
 install_nodejs () {
   nodejs_version=22.19.0
   if [[ ! -d $dotfiles_prefix/node ]]; then
@@ -204,6 +208,7 @@ package_func_json=$(cat << EOS
   "ripgrep":              "install_ripgrep",
   "miniforge":            "install_miniforge",
   "uv":                   "install_uv",
+  "jj":                   "install_jj",
   "pyright":              "install_pyright",
   "rust_analyzer":        "install_rust_analyzer",
   "markdown_oxide":       "install_markdown_oxide",
