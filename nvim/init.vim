@@ -238,6 +238,7 @@ nnoremap <leader><leader>m :BMarks<CR>
 
 " ========== representation ==========
 set number
+set relativenumber
 set showcmd
 set listchars=tab:>-,trail:-
 set list
