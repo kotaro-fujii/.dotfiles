@@ -178,6 +178,8 @@ inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
 inoremap <>! <!--  --><LEFT><LEFT><LEFT><LEFT>
 inoremap <C-s> ==========
+inoremap <C-o> <C-x><C-o>
+inoremap <C-f> <C-x><C-f>
 
 " motions
 noremap H ^
