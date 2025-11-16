@@ -57,4 +57,5 @@ vim.diagnostic.config({
     signs = false,
     underline = true,
 })
+vim.opt.completeopt:remove("preview")
 enable_servers()
