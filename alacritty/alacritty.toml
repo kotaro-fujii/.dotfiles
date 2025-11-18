@@ -13,7 +13,7 @@ dimensions = {columns = 100, lines = 50}
 [font]
 normal = { family = "Hackgen Console", style = "Regular" }
 bold = { style = "Bold" }
-size = 12.75
+#size = 12.75
 
 [mouse]
 bindings = [
