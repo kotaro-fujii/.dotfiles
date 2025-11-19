@@ -66,6 +66,7 @@ cmb () {
   command_realpath=$(which "$1")
   bat "$command_realpath"
 }
+alias td='my-todo'
 
 # aliases and function for mamba and conda
 function caf () {
