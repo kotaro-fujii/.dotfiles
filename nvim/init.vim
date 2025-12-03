@@ -203,8 +203,9 @@ nnoremap <leader>q :q<CR>
 
 nnoremap <M-h> :tabp<CR>
 nnoremap <M-l> :tabn<CR>
-nnoremap <leader>c :tabnew %<CR>
-nnoremap <leader>C :tabclose<CR>
+" nnoremap <leader>c :tabnew %<CR>
+" nnoremap <leader>C :tabclose<CR>
+nmap <leader>c gc
 
 " other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
