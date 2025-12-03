@@ -22,6 +22,13 @@ config.keys = {
     { key = 't',   mods = 'CTRL|SHIFT', action = act.SpawnTab 'DefaultDomain' },
 }
 
+config.window_padding = {
+  left = 2,
+  right = 2,
+  top = 0,
+  bottom = 0,
+}
+
 -- load local settings
 local home_path = os.getenv("USERPROFILE")
 package.path = home_path .. "/.wezterm_local.lua"
