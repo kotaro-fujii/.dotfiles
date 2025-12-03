@@ -345,6 +345,29 @@ function IndentWidthSet()
   endif
 endfunction
 
+" set commentstring
+autocmd FileType * call SetCommentstring()
+function SetCommentstring()
+  let filetype_commentstring_map = {
+    \ "vim": "\" %s",
+    \ "tex": "% %s",
+    \ "plaintex": "% %s",
+    \ "bib": "% %s",
+    \ "sh": "# %s",
+    \ "bash": "# %s",
+    \ "zsh": "# %s",
+    \ "rust": "// %s",
+    \ "typst": "// %s",
+    \ "markdown": "<!-- %s -->",
+    \ "html": "<!-- %s -->",
+    \ "htmldjango": "<!-- %s -->",
+    \ "python": "# %s",
+  \ }
+  if has_key(filetype_commentstring_map, &filetype)
+    let &l:commentstring = filetype_commentstring_map[&filetype]
+  endif
+endfunction
+
 " set filetype of specific files
 autocmd BufEnter */bashenv,*/shellrc,*/shellenv,~/.shellenv.local set filetype=bash
 autocmd BufEnter */dotfiles/gitconfig,~/.profile.gitconfig set filetype=gitconfig
