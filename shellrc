@@ -19,9 +19,9 @@ alias LR='ls -AR'
 alias wl='wc -l'
 alias rl='readlink'
 alias rp='realpath'
-hp () {
-    echo "$(hostname):$(realpath "$1")"
-}
+# hp () {
+#     echo "$(hostname):$(realpath "$1")"
+# }
 alias G='grep'
 alias GE='grep -E'
 alias zz='source ~/.zshrc'    # zshrcを再読み込み
