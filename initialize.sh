@@ -117,6 +117,10 @@ install_bat () {
   cargo install --locked bat
 }
 
+install_tre () {
+  cargo install tre-command
+}
+
 install_fzf () {
   if [[ ! -d $dotfiles_prefix/fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git $dotfiles_prefix/fzf
@@ -203,7 +207,7 @@ package_func_json=$(cat << EOS
   "cargo":                "install_cargo",
   "stack":                "install_stack",
   "bat":                  "install_bat",
-  "bat":                  "install_bat",
+  "tre":                  "install_tre",
   "fzf":                  "install_fzf",
   "ripgrep":              "install_ripgrep",
   "miniforge":            "install_miniforge",
