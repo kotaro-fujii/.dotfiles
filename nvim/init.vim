@@ -363,6 +363,7 @@ function SetCommentstring()
     \ "html": "<!-- %s -->",
     \ "htmldjango": "<!-- %s -->",
     \ "python": "# %s",
+    \ "toml": "# %s",
   \ }
   if has_key(filetype_commentstring_map, &filetype)
     let &l:commentstring = filetype_commentstring_map[&filetype]
