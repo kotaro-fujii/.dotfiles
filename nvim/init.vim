@@ -176,15 +176,13 @@ inoremap '' '
 inoremap "" "
 inoremap """ """"""<LEFT><LEFT><LEFT>
 inoremap <> <><LEFT>
-inoremap <>! <!--  --><LEFT><LEFT><LEFT><LEFT>
 inoremap <C-s> ==========
-inoremap <C-o> <C-x><C-o>
-inoremap <C-f> <C-x><C-f>
+inoremap <silent> <C-o> <C-x><C-o>
+inoremap <silent> <C-f> <C-x><C-f>
 
 " motions
 noremap H ^
 noremap L $
-" noremap K *zz
 noremap n nzz
 noremap N Nzz
 
@@ -201,13 +199,13 @@ nnoremap <leader>h :split<CR>
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>q :q<CR>
 
+" commenting
 nmap <leader>c gc
 
 " other remaps
 nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
-nnoremap <leader><leader>b :call ToggleBackgroundColor()<CR>
+nnoremap <silent> <leader><leader>b :call ToggleBackgroundColor()<CR>
 nnoremap U <C-r>
-nnoremap <leader>i :! 
 nnoremap <leader>src :source ~/.dotfiles/nvim/init.vim<CR>
 
 " terminal settings
