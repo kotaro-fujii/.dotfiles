@@ -188,7 +188,7 @@ noremap L $
 noremap n nzz
 noremap N Nzz
 
-" buffers, windows, tabs
+" buffers, windows
 nnoremap <C-k> :bprev<CR>
 nnoremap <C-j> :bnext<CR>
 nnoremap <leader>d :bnext \| bdelete #<CR>
@@ -201,10 +201,6 @@ nnoremap <leader>h :split<CR>
 nnoremap <leader>v :vsplit<CR>
 nnoremap <leader>q :q<CR>
 
-nnoremap <M-h> :tabp<CR>
-nnoremap <M-l> :tabn<CR>
-" nnoremap <leader>c :tabnew %<CR>
-" nnoremap <leader>C :tabclose<CR>
 nmap <leader>c gc
 
 " other remaps
