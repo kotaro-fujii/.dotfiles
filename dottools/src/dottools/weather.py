@@ -179,7 +179,7 @@ def format_message(w: TodayWeather) -> str:
     return " / ".join(parts)
 
 
-def main(argv: list[str]) -> int:
+def main() -> int:
     if not should_print_today():
         return 0
 
@@ -194,5 +194,5 @@ def main(argv: list[str]) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main(sys.argv))
+    raise SystemExit(main())
 
