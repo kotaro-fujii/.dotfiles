@@ -245,3 +245,5 @@ for package in $(echo $packages); do
     $install_function
   fi
 done
+  # dottools
+  uv tool install -e $dotfiles_prefix/dottools
