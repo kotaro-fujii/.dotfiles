@@ -11,7 +11,8 @@ def hex_to_rgb(h: str):
 def rgb_to_hex(rgb):
     return "#{:02x}{:02x}{:02x}".format(*rgb)
 
-if __name__ == "__main__":
+
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("init")
     parser.add_argument("end")
@@ -29,4 +30,8 @@ if __name__ == "__main__":
     )
     for color_tuple in color_tuples:
         print(rgb_to_hex(color_tuple))
+
+
+if __name__ == "__main__":
+    main()
 

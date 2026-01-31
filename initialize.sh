@@ -16,7 +16,7 @@ windows_appdata=$windows_homedir/AppData/Roaming
 
 # ========== make links ==========
 
-setln () {
+local_settings () {
   # zsh
   ln -sf $dotfiles_prefix/zsh/zshrc $HOME/.zshrc
   ln -sf $dotfiles_prefix/zsh/zshenv $HOME/.zshenv
@@ -24,6 +24,7 @@ setln () {
   # bash
   ln -sf $dotfiles_prefix/bash/bashrc $HOME/.bashrc
   dir_link $dotfiles_prefix/bash $HOME/.bash
+
   # neovim
   [ ! -d $HOME/.config ] && mkdir $HOME/.config
   dir_link $dotfiles_prefix/nvim $HOME/.config/nvim
@@ -41,6 +42,7 @@ setln () {
   dir_link $dotfiles_prefix/vim $HOME/.vim
   # emacs
   dir_link $dotfiles_prefix/emacs.d $HOME/.emacs.d
+
   # alacritty
   if [ -f /etc/wsl.conf ]; then
       windows_alacritty=$windows_appdata/alacritty
@@ -62,17 +64,23 @@ setln () {
     [ ! -d $wezterm_dir ] && mkdir $wezterm_dir
     ln -s $dotfiles_prefix/wezterm/wezterm_linux.lua $wezterm_dir/wezterm.lua
   fi
+
   # powershell
   if [ -f /etc/wsl.conf ]; then
     cp $dotfiles_prefix/pwsh/Microsoft.PowerShell_profile.ps1 $windows_homedir/Documents/PowerShell
   fi
+
+  # jj
+  dir_link $dotfiles_prefix/jj $HOME/.config/jj
+
+  # dottools
+  uv tool install -e $dotfiles_prefix/dottools
+
   # other configs
   ln -sf $dotfiles_prefix/gitconfig $HOME/.gitconfig
   ln -sf $dotfiles_prefix/tmux.conf $HOME/.tmux.conf
-  # jj
-  dir_link $dotfiles_prefix/jj $HOME/.config/jj
 }
-setln
+local_settings
 
 # ========== install applications ==========
 

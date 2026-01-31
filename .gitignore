@@ -16,3 +16,6 @@
 /neovim-install
 
 jj/conf.d/*
+
+*.egg-info/
+__pycache__/

@@ -118,4 +118,4 @@ alias dct='deactivate'
 
 export LS_COLORS="ow=01;04;34:${LS_COLORS}:ow=01;04;34"
 
-uv run "$dotfiles/bin/weather.py" 2>/dev/null
+weather 2>/dev/null

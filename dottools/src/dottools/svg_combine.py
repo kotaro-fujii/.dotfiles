@@ -20,7 +20,7 @@ def get_svg_size(svg_root):
     return (parse_length(width), parse_length(height))
 
 
-if __name__ == '__main__':
+def main():
     # 名前空間処理
     ET.register_namespace('', 'http://www.w3.org/2000/svg')
     ns = {'svg': 'http://www.w3.org/2000/svg'}
@@ -59,3 +59,8 @@ if __name__ == '__main__':
     new_tree = ET.ElementTree(new_svg)
     new_tree.write(args.out_path, encoding="utf-8", xml_declaration=True)
     print(args.out_path)
+
+
+if __name__ == '__main__':
+    main()
+
